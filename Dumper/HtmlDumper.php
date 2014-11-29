@@ -139,23 +139,24 @@ function toggle(a) {
 return function (root) {
     root = doc.getElementById(root);
 
-    var toggler = document.querySelectorAll('button[data-toggle]');
+    var toggler = root.querySelectorAll('button[data-toggle]');
     for (var i = toggler.length - 1; i >= 0; --i) {
         toggler[i].addEventListener("click", function(e) {
             var elem  = e.target;
             var state = elem.getAttribute('data-toggle-state');
+            root      = elem.parentNode;
 
             var toggles     = [];
             var stateToggle = '';
             var stateIcon   = '+/-';
 
             if ('closed' === state) {
-                toggles     = doc.getElementsByClassName('sf-dump-compact');
+                toggles     = root.getElementsByClassName('sf-dump-compact');
                 stateToggle = 'opened';
                 stateIcon   = '-';
             }
             else if ('opened' === state) {
-                toggles     = doc.getElementsByClassName('sf-dump-expanded');
+                toggles     = root.getElementsByClassName('sf-dump-expanded');
                 stateToggle = 'closed';
                 stateIcon   = '+';
             }
@@ -300,6 +301,9 @@ pre.sf-dump a {
     border: 0;
     outline: none;
 }
+pre.sf-dump button {
+    display: block;
+}
 EOHTML;
 
         foreach ($this->styles as $class => $style) {
@@ -392,7 +396,7 @@ EOHTML;
     protected function dumpLine($depth)
     {
         if (-1 === $this->lastDepth) {
-            $this->line = $this->toggle.sprintf($this->dumpPrefix, $this->dumpId, $this->indentPad).$this->line;
+            $this->line = sprintf($this->dumpPrefix, $this->dumpId, $this->indentPad).$this->toggle.$this->line;
         }
         if (!$this->headerIsDumped) {
             $this->line = $this->getDumpHeader().$this->line;
