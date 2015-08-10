@@ -58,7 +58,7 @@ class CliDumper extends AbstractDumper
     {
         parent::__construct($output, $charset);
 
-        if ('\\' === DIRECTORY_SEPARATOR && false !== @getenv('ANSICON')) {
+        if ('\\' === DIRECTORY_SEPARATOR && false !== @getenv('ANSICON') && 'cli' === PHP_SAPI) {
             // Use only the base 16 xterm colors when using ANSICON
             $this->setStyles(array(
                 'default' => '31',
