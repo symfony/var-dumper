@@ -30,3 +30,15 @@ if (!function_exists('dump')) {
         return $var;
     }
 }
+
+
+if (!function_exists('dd')) {
+    
+    function dd($var)
+    {
+        foreach (func_get_args() as $var) {
+            VarDumper::dump($var);
+        }
+        die;
+    }
+}
