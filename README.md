@@ -1,9 +1,12 @@
 VarDumper Component
 ===================
 
+Patched to run with PHP 5.6 and Symfony 2.8
+
 The VarDumper component provides mechanisms for walking through any arbitrary
 PHP variable. Built on top, it provides a better `dump()` function that you
 can use instead of `var_dump`.
+
 
 Resources
 ---------
