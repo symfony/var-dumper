@@ -31,7 +31,7 @@ class ServerDumper implements DataDumperInterface
      * @param DataDumperInterface|null   $wrappedDumper    A wrapped instance used whenever we failed contacting the server
      * @param ContextProviderInterface[] $contextProviders Context providers indexed by context name
      */
-    public function __construct(string $host, DataDumperInterface $wrappedDumper = null, array $contextProviders = array())
+    public function __construct($host, DataDumperInterface $wrappedDumper = null, array $contextProviders = array())
     {
         if (false === strpos($host, '://')) {
             $host = 'tcp://'.$host;
@@ -42,7 +42,7 @@ class ServerDumper implements DataDumperInterface
         $this->contextProviders = $contextProviders;
     }
 
-    public function getContextProviders(): array
+    public function getContextProviders()
     {
         return $this->contextProviders;
     }
@@ -50,7 +50,7 @@ class ServerDumper implements DataDumperInterface
     /**
      * {@inheritdoc}
      */
-    public function dump(Data $data, $output = null): void
+    public function dump(Data $data, $output = null)
     {
         set_error_handler(array(self::class, 'nullErrorHandler'));
 
@@ -97,7 +97,7 @@ class ServerDumper implements DataDumperInterface
         }
     }
 
-    public function isServerListening(): bool
+    public function isServerListening()
     {
         set_error_handler(array(self::class, 'nullErrorHandler'));
 

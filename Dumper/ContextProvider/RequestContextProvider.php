@@ -27,7 +27,7 @@ final class RequestContextProvider implements ContextProviderInterface
         $this->requestStack = $requestStack;
     }
 
-    public function getContext(): ?array
+    public function getContext()
     {
         if (null === $request = $this->requestStack->getCurrentRequest()) {
             return null;

@@ -30,7 +30,7 @@ final class SourceContextProvider implements ContextProviderInterface
     private $projectDir;
     private $fileLinkFormatter;
 
-    public function __construct(string $charset = null, string $projectDir = null, FileLinkFormatter $fileLinkFormatter = null, int $limit = 9)
+    public function __construct($charset = null, $projectDir = null, $fileLinkFormatter = null, $limit = 9)
     {
         $this->charset = $charset;
         $this->projectDir = $projectDir;
@@ -38,7 +38,7 @@ final class SourceContextProvider implements ContextProviderInterface
         $this->limit = $limit;
     }
 
-    public function getContext(): ?array
+    public function getContext()
     {
         $trace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT | DEBUG_BACKTRACE_IGNORE_ARGS, $this->limit);
 
@@ -110,7 +110,7 @@ final class SourceContextProvider implements ContextProviderInterface
         return $context;
     }
 
-    private function htmlEncode(string $s): string
+    private function htmlEncode($s)
     {
         $html = '';
 

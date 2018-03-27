@@ -22,7 +22,7 @@ class ArgsStub extends EnumStub
 {
     private static $parameters = array();
 
-    public function __construct(array $args, string $function, ?string $class)
+    public function __construct(array $args, $function, $class = null)
     {
         list($variadic, $params) = self::getParameters($function, $class);
 

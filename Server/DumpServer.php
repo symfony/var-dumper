@@ -27,7 +27,7 @@ class DumpServer
     private $socket;
     private $logger;
 
-    public function __construct(string $host, LoggerInterface $logger = null)
+    public function __construct($host, LoggerInterface $logger = null)
     {
         if (false === strpos($host, '://')) {
             $host = 'tcp://'.$host;
@@ -37,14 +37,14 @@ class DumpServer
         $this->logger = $logger;
     }
 
-    public function start(): void
+    public function start()
     {
         if (!$this->socket = stream_socket_server($this->host, $errno, $errstr)) {
             throw new \RuntimeException(sprintf('Server start failed on "%s": %s %s.', $this->host, $errstr, $errno));
         }
     }
 
-    public function listen(callable $callback): void
+    public function listen(callable $callback)
     {
         if (null === $this->socket) {
             $this->start();
@@ -76,12 +76,12 @@ class DumpServer
         }
     }
 
-    public function getHost(): string
+    public function getHost()
     {
         return $this->host;
     }
 
-    private function getMessages(): iterable
+    private function getMessages()
     {
         $sockets = array((int) $this->socket => $this->socket);
         $write = array();

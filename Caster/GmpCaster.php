@@ -21,7 +21,7 @@ use Symfony\Component\VarDumper\Cloner\Stub;
  */
 class GmpCaster
 {
-    public static function castGmp(\GMP $gmp, array $a, Stub $stub, $isNested, $filter): array
+    public static function castGmp(\GMP $gmp, array $a, Stub $stub, $isNested, $filter)
     {
         $a[Caster::PREFIX_VIRTUAL.'value'] = new ConstStub(gmp_strval($gmp), gmp_strval($gmp));
 

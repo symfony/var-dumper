@@ -18,7 +18,7 @@ namespace Symfony\Component\VarDumper\Dumper\ContextProvider;
  */
 final class CliContextProvider implements ContextProviderInterface
 {
-    public function getContext(): ?array
+    public function getContext()
     {
         if ('cli' !== PHP_SAPI) {
             return null;

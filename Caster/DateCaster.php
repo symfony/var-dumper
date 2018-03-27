@@ -20,7 +20,7 @@ use Symfony\Component\VarDumper\Cloner\Stub;
  */
 class DateCaster
 {
-    private const PERIOD_LIMIT = 3;
+    const PERIOD_LIMIT = 3;
 
     public static function castDateTime(\DateTimeInterface $d, array $a, Stub $stub, $isNested, $filter)
     {

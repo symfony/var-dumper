@@ -57,6 +57,7 @@ class ServerDumpCommand extends Command
         $availableFormats = implode(', ', array_keys($this->descriptors));
 
         $this
+            ->setName(self::$defaultName)
             ->addOption('format', null, InputOption::VALUE_REQUIRED, sprintf('The output format (%s)', $availableFormats), 'cli')
             ->setDescription('Starts a dump server that collects and displays dumps in a single place')
             ->setHelp(<<<'EOF'
@@ -80,19 +81,19 @@ EOF
         $io = new SymfonyStyle($input, $output);
         $format = $input->getOption('format');
 
-        if (!$descriptor = $this->descriptors[$format] ?? null) {
+        if (!$descriptor = $this->descriptors[$format] ? $this->descriptors[$format] : null) {
             throw new InvalidArgumentException(sprintf('Unsupported format "%s".', $format));
         }
 
-        $errorIo = $io->getErrorStyle();
-        $errorIo->title('Symfony Var Dumper Server');
+        $style = new SymfonyStyle($input, $output);
+        $style->title('Symfony Var Dumper Server');
 
         $this->server->start();
 
-        $errorIo->success(sprintf('Server listening on %s', $this->server->getHost()));
-        $errorIo->comment('Quit the server with CONTROL-C.');
+        $style->success(sprintf('Server listening on %s', $this->server->getHost()));
+        $style->comment('Quit the server with CONTROL-C.');
 
-        $this->server->listen(function (Data $data, array $context, int $clientId) use ($descriptor, $io) {
+        $this->server->listen(function (Data $data, array $context, $clientId) use ($descriptor, $io) {
             $descriptor->describe($io, $data, $context, $clientId);
         });
     }

@@ -34,7 +34,7 @@ class CliDescriptor implements DumpDescriptorInterface
         $this->dumper = $dumper;
     }
 
-    public function describe(OutputInterface $output, Data $data, array $context, int $clientId): void
+    public function describe(OutputInterface $output, Data $data, array $context, $clientId)
     {
         $io = $output instanceof SymfonyStyle ? $output : new SymfonyStyle(new ArrayInput(array()), $output);
 
@@ -62,9 +62,9 @@ class CliDescriptor implements DumpDescriptorInterface
         if (isset($context['source'])) {
             $source = $context['source'];
             $rows[] = array('source', sprintf('%s on line %d', $source['name'], $source['line']));
-            $file = $source['file_relative'] ?? $source['file'];
+            $file = $source['file_relative'] ? $source['file_relative']:  $source['file'];
             $rows[] = array('file', $file);
-            $fileLink = $source['file_link'] ?? null;
+            $fileLink = $source['file_link'] ? $source['file_link'] : null;
         }
 
         $io->table(array(), $rows);

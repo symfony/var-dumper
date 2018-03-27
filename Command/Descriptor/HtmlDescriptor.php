@@ -32,7 +32,7 @@ class HtmlDescriptor implements DumpDescriptorInterface
         $this->dumper = $dumper;
     }
 
-    public function describe(OutputInterface $output, Data $data, array $context, int $clientId): void
+    public function describe(OutputInterface $output, Data $data, array $context, $clientId)
     {
         if (!$this->initialized) {
             $styles = file_get_contents(__DIR__.'/../../Resources/css/htmlDescriptor.css');
@@ -86,7 +86,7 @@ HTML
         );
     }
 
-    private function extractDate(array $context, string $format = 'r'): string
+    private function extractDate(array $context, $format = 'r')
     {
         return date($format, $context['timestamp']);
     }
