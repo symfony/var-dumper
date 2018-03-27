@@ -1,5 +1,5 @@
 {
-    "name": "symfony/var-dumper",
+    "name": "shyim/var-dumper",
     "type": "library",
     "description": "Symfony mechanism for exploring and dumping PHP variables",
     "keywords": ["dump", "debug"],
