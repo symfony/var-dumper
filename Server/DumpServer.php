@@ -52,7 +52,7 @@ class DumpServer
         }
 
         foreach ($this->getMessages() as $clientId => $message) {
-            $payload = @unserialize(base64_decode($message), array('allowed_classes' => array(Data::class, Stub::class)));
+            $payload = @unserialize(base64_decode($message)));
 
             // Impossible to decode the message, give up.
             if (false === $payload) {
