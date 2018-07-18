@@ -233,8 +233,11 @@ class ReflectionCaster
             'allowsNull' => 'allowsNull',
         ));
 
-        if ($v = $c->getType()) {
-            $a[$prefix.'typeHint'] = $v->getName();
+        if (\PHP_VERSION_ID >= 70000 && $v = $c->getType()) {
+            $a[$prefix.'typeHint'] =
+                \PHP_VERSION_ID >= 70100
+                    ? $v->getName()
+                    : (string) $v;
         }
 
         if (isset($a[$prefix.'typeHint'])) {
