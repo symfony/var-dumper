@@ -54,9 +54,13 @@ class ClassStub extends ConstStub
             }
 
             if (\is_array($r)) {
-                try {
-                    $r = new \ReflectionMethod($r[0], $r[1]);
-                } catch (\ReflectionException $e) {
+                if (false === strpos($r[1], '{closure}')) {
+                    try {
+                        $r = new \ReflectionMethod($r[0], $r[1]);
+                    } catch (\ReflectionException $e) {
+                        $r = new \ReflectionClass($r[0]);
+                    }
+                } else {
                     $r = new \ReflectionClass($r[0]);
                 }
             }
