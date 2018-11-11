@@ -712,11 +712,12 @@ pre.sf-dump .sf-dump-search-hidden {
     display: none;
 }
 pre.sf-dump .sf-dump-search-wrapper {
-    float: right;
+    right: 15px;
     font-size: 0;
     white-space: nowrap;
     max-width: 100%;
     text-align: right;
+    position: fixed;
 }
 pre.sf-dump .sf-dump-search-wrapper > * {
     vertical-align: top;
