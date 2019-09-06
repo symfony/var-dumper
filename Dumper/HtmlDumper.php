@@ -891,7 +891,7 @@ EOHTML
                 $link = '';
             }
 
-            return sprintf('<abbr title="%s" class=sf-dump-%s>%s</abbr>%s', $v, $style, substr($v, $c + 1), $link);
+            return sprintf('<abbr title="%s" class=sf-dump-%s>%s</abbr>%s', $v, $style, $v, $link);
         } elseif ('protected' === $style) {
             $style .= ' title="Protected property"';
         } elseif ('meta' === $style && isset($attr['title'])) {
