@@ -690,7 +690,6 @@ pre.sf-dump img {
 }
 pre.sf-dump .sf-dump-ellipsis {
     display: inline-block;
-    overflow: visible;
     text-overflow: ellipsis;
     max-width: 5em;
     white-space: nowrap;
