@@ -41,3 +41,13 @@ if (!function_exists('dd')) {
         exit(1);
     }
 }
+
+if (!function_exists('ddc')) {
+    function ddc($count, ...$vars)
+    {
+        static $c = 0;
+        $c++;
+
+        return ($count == $c) ? dd(...$vars) : dump(...$vars);
+    }
+}
