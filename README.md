@@ -5,6 +5,12 @@ The VarDumper component provides mechanisms for walking through any arbitrary
 PHP variable. It provides a better `dump()` function that you can use instead
 of `var_dump()`.
 
+For the error below :
+
+Fatal error: Uncaught Error: Call to undefined function dump()
+
+excute this comand:
+composer require symfony/debug-pack
 Resources
 ---------
 
