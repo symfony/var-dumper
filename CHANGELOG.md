@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+6.2.0
+---
+
+ * added `FFI\CData` and `FFI\CType` support
+
 5.4
 ---
 
