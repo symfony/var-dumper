@@ -48,3 +48,15 @@ if (!function_exists('dd')) {
         exit(1);
     }
 }
+
+if (!function_exists('dd_if')) {
+    /**
+     * @return never
+     */
+    function dd_if(bool $condition, ...$vars): never
+    {
+        if ($condition) {
+            dd(...$vars);
+        }
+    }
+}
