@@ -624,6 +624,9 @@ return function (root, x) {
 
 })(document);
 </script><style>
+:root {
+    color-scheme: light dark;
+}                    
 .sf-js-enabled pre.sf-dump .sf-dump-compact,
 .sf-js-enabled .sf-dump-str-collapse .sf-dump-str-collapse,
 .sf-js-enabled .sf-dump-str-expand .sf-dump-str-expand {
