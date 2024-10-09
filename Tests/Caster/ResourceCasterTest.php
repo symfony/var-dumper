@@ -11,22 +11,21 @@
 
 namespace Symfony\Component\VarDumper\Tests\Caster;
 
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\IgnoreDeprecations;
+use PHPUnit\Framework\Attributes\RequiresPhpExtension;
 use PHPUnit\Framework\TestCase;
-use Symfony\Bridge\PhpUnit\ExpectUserDeprecationMessageTrait;
 use Symfony\Component\VarDumper\Caster\ResourceCaster;
 use Symfony\Component\VarDumper\Cloner\Stub;
 use Symfony\Component\VarDumper\Test\VarDumperTestTrait;
 
 class ResourceCasterTest extends TestCase
 {
-    use ExpectUserDeprecationMessageTrait;
     use VarDumperTestTrait;
 
-    /**
-     * @group legacy
-     *
-     * @requires extension curl
-     */
+    #[IgnoreDeprecations]
+    #[Group('legacy')]
+    #[RequiresPhpExtension('curl')]
     public function testCastCurlIsDeprecated()
     {
         $ch = curl_init('http://example.com');
@@ -38,11 +37,9 @@ class ResourceCasterTest extends TestCase
         ResourceCaster::castCurl($ch, [], new Stub(), false);
     }
 
-    /**
-     * @group legacy
-     *
-     * @requires extension gd
-     */
+    #[IgnoreDeprecations]
+    #[Group('legacy')]
+    #[RequiresPhpExtension('gd')]
     public function testCastGdIsDeprecated()
     {
         $gd = imagecreate(1, 1);
