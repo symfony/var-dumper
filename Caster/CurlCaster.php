@@ -11,24 +11,20 @@
 
 namespace Symfony\Component\VarDumper\Caster;
 
-use ProxyManager\Proxy\ProxyInterface;
 use Symfony\Component\VarDumper\Cloner\Stub;
 
 /**
  * @author Nicolas Grekas <p@tchwork.com>
  *
- * @final
- *
- * @internal since Symfony 7.3
+ * @internal
  */
-class ProxyManagerCaster
+final class CurlCaster
 {
-    public static function castProxy(ProxyInterface $c, array $a, Stub $stub, bool $isNested): array
+    public static function castCurl(\CurlHandle $h, array $a, Stub $stub, bool $isNested): array
     {
-        if ($parent = get_parent_class($c)) {
-            $stub->class .= ' - '.$parent;
+        foreach (curl_getinfo($h) as $key => $val) {
+            $a[Caster::PREFIX_VIRTUAL.$key] = $val;
         }
-        $stub->class .= '@proxy';
 
         return $a;
     }

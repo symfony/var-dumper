@@ -11,24 +11,19 @@
 
 namespace Symfony\Component\VarDumper\Caster;
 
-use ProxyManager\Proxy\ProxyInterface;
 use Symfony\Component\VarDumper\Cloner\Stub;
 
 /**
  * @author Nicolas Grekas <p@tchwork.com>
  *
- * @final
- *
- * @internal since Symfony 7.3
+ * @internal
  */
-class ProxyManagerCaster
+final class GdCaster
 {
-    public static function castProxy(ProxyInterface $c, array $a, Stub $stub, bool $isNested): array
+    public static function castGd(\GdImage $gd, array $a, Stub $stub, bool $isNested): array
     {
-        if ($parent = get_parent_class($c)) {
-            $stub->class .= ' - '.$parent;
-        }
-        $stub->class .= '@proxy';
+        $a[Caster::PREFIX_VIRTUAL.'size'] = imagesx($gd).'x'.imagesy($gd);
+        $a[Caster::PREFIX_VIRTUAL.'trueColor'] = imageistruecolor($gd);
 
         return $a;
     }
