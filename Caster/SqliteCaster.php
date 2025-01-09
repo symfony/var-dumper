@@ -11,24 +11,21 @@
 
 namespace Symfony\Component\VarDumper\Caster;
 
-use ProxyManager\Proxy\ProxyInterface;
 use Symfony\Component\VarDumper\Cloner\Stub;
 
 /**
- * @author Nicolas Grekas <p@tchwork.com>
+ * @author Alexandre Daubois <alex.daubois@gmail.com>
  *
- * @final
- *
- * @internal since Symfony 7.3
+ * @internal
  */
-class ProxyManagerCaster
+final class SqliteCaster
 {
-    public static function castProxy(ProxyInterface $c, array $a, Stub $stub, bool $isNested): array
+    public static function castSqlite3Result(\SQLite3Result $result, array $a, Stub $stub, bool $isNested): array
     {
-        if ($parent = get_parent_class($c)) {
-            $stub->class .= ' - '.$parent;
+        $numColumns = $result->numColumns();
+        for ($i = 0; $i < $numColumns; ++$i) {
+            $a[Caster::PREFIX_VIRTUAL.'columnNames'][$i] = $result->columnName($i);
         }
-        $stub->class .= '@proxy';
 
         return $a;
     }
