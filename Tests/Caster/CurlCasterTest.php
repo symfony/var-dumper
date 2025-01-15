@@ -31,7 +31,7 @@ class CurlCasterTest extends TestCase
             <<<'EODUMP'
 CurlHandle {
   url: "http://example.com/"
-  content_type: "text/html; charset=UTF-8"
+  content_type: "text/html"
   http_code: 200%A
 }
 EODUMP, $ch);
