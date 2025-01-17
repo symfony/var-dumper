@@ -856,7 +856,7 @@ EOHTML
         } elseif ('meta' === $style && isset($attr['title'])) {
             $dumpTitle = esc($this->utf8Encode($attr['title']));
         } elseif ('private' === $style) {
-            $dumpTitle = \sprintf('Private property defined in class:&#10;`%s`"', esc($this->utf8Encode($attr['class'])));
+            $dumpTitle = \sprintf('Private property defined in class:&#10;`%s`', esc($this->utf8Encode($attr['class'])));
         }
 
         if (isset($attr['ellipsis'])) {
