@@ -69,7 +69,6 @@ EODUMP, $dba);
     }
 
     /**
-     * @requires PHP 8.4.2
      * @requires extension dba
      */
     public function testCastDba()
@@ -80,25 +79,6 @@ EODUMP, $dba);
             <<<'EODUMP'
 Dba\Connection {
   +file: %s
-}
-EODUMP, $dba);
-    }
-
-    /**
-     * @requires PHP 8.4
-     * @requires extension dba
-     */
-    public function testCastDbaOnBuggyPhp84()
-    {
-        if (\PHP_VERSION_ID >= 80402) {
-            $this->markTestSkipped('The test can only be run on PHP 8.4.0 and 8.4.1, see https://github.com/php/php-src/issues/16990');
-        }
-
-        $dba = dba_open(sys_get_temp_dir().'/test.db', 'c');
-
-        $this->assertDumpMatchesFormat(
-            <<<'EODUMP'
-Dba\Connection {
 }
 EODUMP, $dba);
     }
