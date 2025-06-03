@@ -305,9 +305,6 @@ EOTXT
         putenv('DUMP_STRING_LENGTH=');
     }
 
-    /**
-     * @requires PHP 8.4
-     */
     public function testVirtualProperties()
     {
         $this->assertDumpEquals(<<<EODUMP

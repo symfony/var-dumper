@@ -34,12 +34,9 @@ class ResourceCaster
         return CurlCaster::castCurl($h, $a, $stub, $isNested);
     }
 
-    /**
-     * @param resource|\Dba\Connection $dba
-     */
-    public static function castDba(mixed $dba, array $a, Stub $stub, bool $isNested): array
+    public static function castDba(\Dba\Connection $dba, array $a, Stub $stub, bool $isNested): array
     {
-        if (\PHP_VERSION_ID < 80402 && !\is_resource($dba)) {
+        if (\PHP_VERSION_ID < 80402) {
             // @see https://github.com/php/php-src/issues/16990
             return $a;
         }

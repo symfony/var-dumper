@@ -118,9 +118,6 @@ EOTXT
         );
     }
 
-    /**
-     * @requires PHP 8.4
-     */
     public function testVirtualProperties()
     {
         $dumper = new HtmlDumper('php://output');

@@ -53,22 +53,6 @@ class ResourceCasterTest extends TestCase
     }
 
     /**
-     * @requires PHP < 8.4
-     * @requires extension dba
-     */
-    public function testCastDbaPriorToPhp84()
-    {
-        $dba = dba_open(sys_get_temp_dir().'/test.db', 'c');
-
-        $this->assertDumpMatchesFormat(
-            <<<'EODUMP'
-dba resource {
-  file: %s
-}
-EODUMP, $dba);
-    }
-
-    /**
      * @requires extension dba
      */
     public function testCastDba()
