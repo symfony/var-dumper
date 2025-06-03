@@ -69,14 +69,11 @@ EODUMP, $dba);
     }
 
     /**
-     * @requires PHP 8.4
+     * @requires PHP 8.4.2
+     * @requires extension dba
      */
     public function testCastDba()
     {
-        if (\PHP_VERSION_ID < 80402) {
-            $this->markTestSkipped('The test cannot be run on PHP 8.4.0 and PHP 8.4.1, see https://github.com/php/php-src/issues/16990');
-        }
-
         $dba = dba_open(sys_get_temp_dir().'/test.db', 'c');
 
         $this->assertDumpMatchesFormat(
@@ -89,6 +86,7 @@ EODUMP, $dba);
 
     /**
      * @requires PHP 8.4
+     * @requires extension dba
      */
     public function testCastDbaOnBuggyPhp84()
     {
