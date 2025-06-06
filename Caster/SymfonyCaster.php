@@ -80,12 +80,14 @@ class SymfonyCaster
 
         $instance = $a['realInstance'] ?? null;
 
-        $a = ['status' => new ConstStub(match ($a['status']) {
-            LazyObjectState::STATUS_INITIALIZED_FULL => 'INITIALIZED_FULL',
-            LazyObjectState::STATUS_INITIALIZED_PARTIAL => 'INITIALIZED_PARTIAL',
-            LazyObjectState::STATUS_UNINITIALIZED_FULL => 'UNINITIALIZED_FULL',
-            LazyObjectState::STATUS_UNINITIALIZED_PARTIAL => 'UNINITIALIZED_PARTIAL',
-        }, $a['status'])];
+        if (isset($a['status'])) { // forward-compat with Symfony 8
+            $a = ['status' => new ConstStub(match ($a['status']) {
+                LazyObjectState::STATUS_INITIALIZED_FULL => 'INITIALIZED_FULL',
+                LazyObjectState::STATUS_INITIALIZED_PARTIAL => 'INITIALIZED_PARTIAL',
+                LazyObjectState::STATUS_UNINITIALIZED_FULL => 'UNINITIALIZED_FULL',
+                LazyObjectState::STATUS_UNINITIALIZED_PARTIAL => 'UNINITIALIZED_PARTIAL',
+            }, $a['status'])];
+        }
 
         if ($instance) {
             $a['realInstance'] = $instance;
