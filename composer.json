@@ -29,6 +29,7 @@
         "twig/twig": "^3.12"
     },
     "conflict": {
+        "symfony/console": "<7.4",
         "symfony/error-handler": "<7.4"
     },
     "autoload": {
