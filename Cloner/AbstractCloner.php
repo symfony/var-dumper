@@ -181,7 +181,7 @@ abstract class AbstractCloner implements ClonerInterface
 
         'Dba\Connection' => ['Symfony\Component\VarDumper\Caster\ResourceCaster', 'castDba'],
 
-        'GdImage' => ['Symfony\Component\VarDumper\Caster\ResourceCaster', 'castGd'],
+        'GdImage' => ['Symfony\Component\VarDumper\Caster\GdCaster', 'castGd'],
 
         'SQLite3Result' => ['Symfony\Component\VarDumper\Caster\SqliteCaster', 'castSqlite3Result'],
 

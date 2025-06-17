@@ -23,36 +23,6 @@ class ResourceCasterTest extends TestCase
     use VarDumperTestTrait;
 
     /**
-     * @group legacy
-     *
-     * @requires extension curl
-     */
-    public function testCastCurlIsDeprecated()
-    {
-        $ch = curl_init('http://example.com');
-        curl_setopt($ch, \CURLOPT_RETURNTRANSFER, true);
-        curl_exec($ch);
-
-        $this->expectUserDeprecationMessage('Since symfony/var-dumper 7.3: The "Symfony\Component\VarDumper\Caster\ResourceCaster::castCurl()" method is deprecated without replacement.');
-
-        ResourceCaster::castCurl($ch, [], new Stub(), false);
-    }
-
-    /**
-     * @group legacy
-     *
-     * @requires extension gd
-     */
-    public function testCastGdIsDeprecated()
-    {
-        $gd = imagecreate(1, 1);
-
-        $this->expectUserDeprecationMessage('Since symfony/var-dumper 7.3: The "Symfony\Component\VarDumper\Caster\ResourceCaster::castGd()" method is deprecated without replacement.');
-
-        ResourceCaster::castGd($gd, [], new Stub(), false);
-    }
-
-    /**
      * @requires extension dba
      */
     public function testCastDba()
