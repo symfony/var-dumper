@@ -29,7 +29,7 @@ class ResourceCaster
      */
     public static function castCurl(\CurlHandle $h, array $a, Stub $stub, bool $isNested): array
     {
-        trigger_deprecation('symfony/var-dumper', '7.3', 'The "%s()" method is deprecated without replacement.', __METHOD__, CurlCaster::class);
+        trigger_deprecation('symfony/var-dumper', '7.3', 'The "%s()" method is deprecated without replacement.', __METHOD__);
 
         return CurlCaster::castCurl($h, $a, $stub, $isNested);
     }
@@ -75,7 +75,7 @@ class ResourceCaster
      */
     public static function castGd(\GdImage $gd, array $a, Stub $stub, bool $isNested): array
     {
-        trigger_deprecation('symfony/var-dumper', '7.3', 'The "%s()" method is deprecated without replacement.', __METHOD__, GdCaster::class);
+        trigger_deprecation('symfony/var-dumper', '7.3', 'The "%s()" method is deprecated without replacement.', __METHOD__);
 
         return GdCaster::castGd($gd, $a, $stub, $isNested);
     }
@@ -85,7 +85,7 @@ class ResourceCaster
      */
     public static function castOpensslX509(\OpenSSLCertificate $h, array $a, Stub $stub, bool $isNested): array
     {
-        trigger_deprecation('symfony/var-dumper', '7.3', 'The "%s()" method is deprecated without replacement.', __METHOD__, OpenSSLCaster::class);
+        trigger_deprecation('symfony/var-dumper', '7.3', 'The "%s()" method is deprecated without replacement.', __METHOD__);
 
         return OpenSSLCaster::castOpensslX509($h, $a, $stub, $isNested);
     }
