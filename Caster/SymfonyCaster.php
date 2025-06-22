@@ -20,7 +20,7 @@ use Symfony\Component\VarExporter\Internal\LazyObjectState;
 /**
  * @final
  *
- * @internal since Symfony 7.3
+ * @internal
  */
 class SymfonyCaster
 {

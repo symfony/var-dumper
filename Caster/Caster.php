@@ -47,7 +47,7 @@ class Caster
      *
      * @param bool $hasDebugInfo Whether the __debugInfo method exists on $obj or not
      *
-     * @internal since Symfony 7.3
+     * @internal
      */
     public static function castObject(object $obj, string $class, bool $hasDebugInfo = false, ?string $debugClass = null): array
     {
@@ -165,7 +165,7 @@ class Caster
     }
 
     /**
-     * @internal since Symfony 7.3
+     * @internal
      */
     public static function castPhpIncompleteClass(\__PHP_Incomplete_Class $c, array $a, Stub $stub, bool $isNested): array
     {
