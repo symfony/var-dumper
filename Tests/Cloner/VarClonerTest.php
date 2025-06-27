@@ -12,7 +12,11 @@
 namespace Symfony\Component\VarDumper\Tests\Cloner;
 
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\VarDumper\Caster\DateCaster;
+use Symfony\Component\VarDumper\Cloner\AbstractCloner;
+use Symfony\Component\VarDumper\Cloner\Stub;
 use Symfony\Component\VarDumper\Cloner\VarCloner;
+use Symfony\Component\VarDumper\Dumper\CliDumper;
 use Symfony\Component\VarDumper\Tests\Fixtures\Php74;
 use Symfony\Component\VarDumper\Tests\Fixtures\Php81Enums;
 
@@ -21,6 +25,64 @@ use Symfony\Component\VarDumper\Tests\Fixtures\Php81Enums;
  */
 class VarClonerTest extends TestCase
 {
+    public function testAddCaster()
+    {
+        $o1 = new class() {
+            public string $p1 = 'p1';
+        };
+        $o2 = new class() {
+            public string $p2 = 'p2';
+        };
+
+        AbstractCloner::addDefaultCasters([
+            $o1::class => function ($obj, $array) {
+                $array['p1'] = 123;
+
+                return $array;
+            },
+            // Test we can override the default casters
+            \DateTimeInterface::class => function (\DateTimeInterface $obj, $array, Stub $stub, bool $isNested, int $filter) {
+                $array = DateCaster::castDateTime($obj, $array, $stub, $isNested, $filter);
+                $array['foo'] = 'bar';
+
+                return $array;
+            },
+        ]);
+        $cloner = new VarCloner();
+        $cloner->addCasters([
+            $o2::class => function ($obj, $array) {
+                $array['p2'] = 456;
+
+                return $array;
+            },
+        ]);
+
+        $dumper = new CliDumper('php://output');
+        $dumper->setColors(false);
+
+        ob_start();
+        $dumper->dump($cloner->cloneVar([$o1, $o2, new \DateTime('Mon Jan 4 15:26:20 2010 +0100')]));
+        $out = ob_get_clean();
+        $out = preg_replace('/[ \t]+$/m', '', $out);
+        $this->assertStringMatchesFormat(
+            <<<EOTXT
+            array:3 [
+              0 => class@anonymous {#%d
+                +p1: 123
+              }
+              1 => class@anonymous {#%d
+                +p2: 456
+              }
+              2 => DateTime @1262615180 {#%d
+                date: 2010-01-04 15:26:20.0 +01:00
+                +foo: "bar"
+              }
+            ]
+            EOTXT,
+            $out
+        );
+    }
+
     public function testMaxIntBoundary()
     {
         $data = [\PHP_INT_MAX => 123];
@@ -427,7 +489,7 @@ Symfony\Component\VarDumper\Cloner\Data Object
                             [attr] => Array
                                 (
                                     [file] => %a%eVarClonerTest.php
-                                    [line] => 22
+                                    [line] => 26
                                 )
 
                         )

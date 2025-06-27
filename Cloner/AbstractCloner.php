@@ -247,18 +247,33 @@ abstract class AbstractCloner implements ClonerInterface
     /**
      * Adds casters for resources and objects.
      *
-     * Maps resources or objects types to a callback.
-     * Types are in the key, with a callable caster for value.
-     * Resource types are to be prefixed with a `:`,
-     * see e.g. static::$defaultCasters.
+     * Maps resources or object types to a callback.
+     * Use types as keys and callable casters as values.
+     * Prefix types with `::`,
+     * see e.g. self::$defaultCasters.
      *
-     * @param callable[] $casters A map of casters
+     * @param array<string, callable> $casters A map of casters
      */
     public function addCasters(array $casters): void
     {
         foreach ($casters as $type => $callback) {
             $this->casters[$type][] = $callback;
         }
+    }
+
+    /**
+     * Adds default casters for resources and objects.
+     *
+     * Maps resources or object types to a callback.
+     * Use types as keys and callable casters as values.
+     * Prefix types with `::`,
+     * see e.g. self::$defaultCasters.
+     *
+     * @param array<string, callable> $casters A map of casters
+     */
+    public static function addDefaultCasters(array $casters): void
+    {
+        self::$defaultCasters = [...self::$defaultCasters, ...$casters];
     }
 
     /**
