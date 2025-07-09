@@ -27,10 +27,10 @@ class VarClonerTest extends TestCase
 {
     public function testAddCaster()
     {
-        $o1 = new class() {
+        $o1 = new class {
             public string $p1 = 'p1';
         };
-        $o2 = new class() {
+        $o2 = new class {
             public string $p2 = 'p2';
         };
 
