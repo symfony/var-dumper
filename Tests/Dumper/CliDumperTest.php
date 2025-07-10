@@ -433,7 +433,7 @@ EOTXT
   \e[0;38;5;208m"\e[38;5;113mfoo\e[0;38;5;208m" => "\e[1;38;5;113mbar\e[0;38;5;208m"\e[m
 \e[0;38;5;208m]\e[m
 
-EOTXT
+EOTXT,
         ];
 
         yield [[], AbstractDumper::DUMP_LIGHT_ARRAY, "\e[0;38;5;208m[]\e[m\n"];
@@ -446,7 +446,7 @@ EOTXT
   \e[0;38;5;208m"\e[38;5;113mfoo\e[0;38;5;208m" => "\e[1;38;5;113mbar\e[0;38;5;208m"\e[m
 \e[0;38;5;208m]\e[m
 
-EOTXT
+EOTXT,
         ];
 
         yield [[], 0, "\e[0;38;5;208m[]\e[m\n"];
