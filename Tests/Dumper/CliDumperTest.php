@@ -417,7 +417,7 @@ EOTXT
   \e[0;38;5;208m"\e[38;5;113mfoo\e[0;38;5;208m" => "\e[1;38;5;113mbar\e[0;38;5;208m"\e[m
 \e[0;38;5;208m]\e[m
 
-EOTXT
+EOTXT,
         ];
 
         yield [[], AbstractDumper::DUMP_LIGHT_ARRAY, "\e[0;38;5;208m[]\e[m\n"];
@@ -430,7 +430,7 @@ EOTXT
   \e[0;38;5;208m"\e[38;5;113mfoo\e[0;38;5;208m" => "\e[1;38;5;113mbar\e[0;38;5;208m"\e[m
 \e[0;38;5;208m]\e[m
 
-EOTXT
+EOTXT,
         ];
 
         yield [[], 0, "\e[0;38;5;208m[]\e[m\n"];
@@ -503,7 +503,7 @@ EOTXT
     public function testFileLinkFormat()
     {
         if (!class_exists(FileLinkFormatter::class)) {
-            $this->markTestSkipped(sprintf('Class "%s" is required to run this test.', FileLinkFormatter::class));
+            $this->markTestSkipped(\sprintf('Class "%s" is required to run this test.', FileLinkFormatter::class));
         }
 
         $data = new Data([

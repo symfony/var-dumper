@@ -192,7 +192,7 @@ class ExceptionCaster
             } else {
                 $label = substr_replace($prefix, "title=Stack level $j.", 2, 0).$lastCall;
             }
-            $a[substr_replace($label, sprintf('separator=%s&', $frame instanceof EnumStub ? ' ' : ':'), 2, 0)] = $frame;
+            $a[substr_replace($label, \sprintf('separator=%s&', $frame instanceof EnumStub ? ' ' : ':'), 2, 0)] = $frame;
 
             $lastCall = $call;
         }
@@ -240,7 +240,7 @@ class ExceptionCaster
                         if (isset($f['object'])) {
                             $template = $f['object'];
                         } elseif ((new \ReflectionClass($f['class']))->isInstantiable()) {
-                            $template = unserialize(sprintf('O:%d:"%s":0:{}', \strlen($f['class']), $f['class']));
+                            $template = unserialize(\sprintf('O:%d:"%s":0:{}', \strlen($f['class']), $f['class']));
                         }
                         if (null !== $template) {
                             $ellipsis = 0;
@@ -264,7 +264,7 @@ class ExceptionCaster
                             $ellipsis += 1 + \strlen($f['line']);
                         }
                     }
-                    $srcAttr .= sprintf('&separator= &file=%s&line=%d', rawurlencode($f['file']), $f['line']);
+                    $srcAttr .= \sprintf('&separator= &file=%s&line=%d', rawurlencode($f['file']), $f['line']);
                 } else {
                     $srcAttr .= '&separator=:';
                 }
@@ -295,7 +295,7 @@ class ExceptionCaster
     public static function castFlattenException(FlattenException $e, array $a, Stub $stub, bool $isNested)
     {
         if ($isNested) {
-            $k = sprintf(Caster::PATTERN_PRIVATE, FlattenException::class, 'traceAsString');
+            $k = \sprintf(Caster::PATTERN_PRIVATE, FlattenException::class, 'traceAsString');
             $a[$k] = new CutStub($a[$k]);
         }
 
@@ -411,7 +411,7 @@ class ExceptionCaster
                 }
             }
             $c->attr['lang'] = $lang;
-            $srcLines[sprintf("\0~separator=› &%d\0", $i + $line - $srcContext)] = $c;
+            $srcLines[\sprintf("\0~separator=› &%d\0", $i + $line - $srcContext)] = $c;
         }
 
         return new EnumStub($srcLines);

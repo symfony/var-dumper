@@ -98,7 +98,7 @@ class HtmlDumper extends CliDumper
     public function setTheme(string $themeName)
     {
         if (!isset(static::$themes[$themeName])) {
-            throw new \InvalidArgumentException(sprintf('Theme "%s" does not exist in class "%s".', $themeName, static::class));
+            throw new \InvalidArgumentException(\sprintf('Theme "%s" does not exist in class "%s".', $themeName, static::class));
         }
 
         $this->setStyles(static::$themes[$themeName]);
@@ -792,7 +792,7 @@ EOHTML
             $this->line .= $cursor->depth >= $this->displayOptions['maxDepth'] ? ' <samp class=sf-dump-compact>' : ' <samp class=sf-dump-expanded>';
             $this->endValue($cursor);
             $this->line .= $this->indentPad;
-            $this->line .= sprintf('<img src="data:%s;base64,%s" /></samp>', $cursor->attr['content-type'], base64_encode($cursor->attr['img-data']));
+            $this->line .= \sprintf('<img src="data:%s;base64,%s" /></samp>', $cursor->attr['content-type'], base64_encode($cursor->attr['img-data']));
             $this->endValue($cursor);
         } else {
             parent::dumpString($cursor, $str, $bin, $cut);
@@ -823,7 +823,7 @@ EOHTML
                 $r = Cursor::HASH_OBJECT !== $type ? 1 - (Cursor::HASH_RESOURCE !== $type) : 2;
                 $r .= $r && 0 < $cursor->softRefHandle ? $cursor->softRefHandle : $cursor->refIndex;
 
-                $this->line .= sprintf(' id=%s-ref%s', $this->dumpId, $r);
+                $this->line .= \sprintf(' id=%s-ref%s', $this->dumpId, $r);
             }
             $this->line .= $eol;
             $this->dumpLine($cursor->depth);
@@ -852,11 +852,11 @@ EOHTML
 
         if ('ref' === $style) {
             if (empty($attr['count'])) {
-                return sprintf('<a class=sf-dump-ref>%s</a>', $v);
+                return \sprintf('<a class=sf-dump-ref>%s</a>', $v);
             }
             $r = ('#' !== $v[0] ? 1 - ('@' !== $v[0]) : 2).substr($value, 1);
 
-            return sprintf('<a class=sf-dump-ref href=#%s-ref%s title="%d occurrences">%s</a>', $this->dumpId, $r, 1 + $attr['count'], $v);
+            return \sprintf('<a class=sf-dump-ref href=#%s-ref%s title="%d occurrences">%s</a>', $this->dumpId, $r, 1 + $attr['count'], $v);
         }
 
         $dumpClasses = ['sf-dump-'.$style];
@@ -867,7 +867,7 @@ EOHTML
         } elseif ('public' === $style) {
             $dumpTitle = empty($attr['dynamic']) ? 'Public property' : 'Runtime added dynamic property';
         } elseif ('str' === $style && 1 < $attr['length']) {
-            $dumpTitle = sprintf('%d%s characters', $attr['length'], $attr['binary'] ? ' binary or non-UTF-8' : '');
+            $dumpTitle = \sprintf('%d%s characters', $attr['length'], $attr['binary'] ? ' binary or non-UTF-8' : '');
         } elseif ('note' === $style && 0 < ($attr['depth'] ?? 0) && false !== $c = strrpos($value, '\\')) {
             $attr += [
                 'ellipsis' => \strlen($value) - $c,
@@ -879,7 +879,7 @@ EOHTML
         } elseif ('meta' === $style && isset($attr['title'])) {
             $dumpTitle = esc($this->utf8Encode($attr['title']));
         } elseif ('private' === $style) {
-            $dumpTitle = sprintf('Private property defined in class:&#10;`%s`', esc($this->utf8Encode($attr['class'])));
+            $dumpTitle = \sprintf('Private property defined in class:&#10;`%s`', esc($this->utf8Encode($attr['class'])));
         }
 
         if (isset($attr['ellipsis'])) {
@@ -890,20 +890,20 @@ EOHTML
             }
             $label = esc(substr($value, -$attr['ellipsis']));
             $dumpTitle = $v."\n".$dumpTitle;
-            $v = sprintf('<span class="%s">%s</span>', $ellipsisClass, substr($v, 0, -\strlen($label)));
+            $v = \sprintf('<span class="%s">%s</span>', $ellipsisClass, substr($v, 0, -\strlen($label)));
 
             if (!empty($attr['ellipsis-tail'])) {
                 $tail = \strlen(esc(substr($value, -$attr['ellipsis'], $attr['ellipsis-tail'])));
-                $v .= sprintf('<span class="%s">%s</span><span class="sf-dump-ellipsis-tail">%s</span>', $ellipsisClass, substr($label, 0, $tail), substr($label, $tail));
+                $v .= \sprintf('<span class="%s">%s</span><span class="sf-dump-ellipsis-tail">%s</span>', $ellipsisClass, substr($label, 0, $tail), substr($label, $tail));
             } else {
-                $v .= sprintf('<span class="sf-dump-ellipsis-tail">%s</span>', $label);
+                $v .= \sprintf('<span class="sf-dump-ellipsis-tail">%s</span>', $label);
             }
         }
 
         $map = static::$controlCharsMap;
-        $v = sprintf(
+        $v = \sprintf(
             '<span class=%s%s%1$s%s>%s</span>',
-            1 === count($dumpClasses) ? '' : '"',
+            1 === \count($dumpClasses) ? '' : '"',
             implode(' ', $dumpClasses),
             $dumpTitle ? ' title="'.$dumpTitle.'"' : '',
             preg_replace_callback(static::$controlCharsRx, function ($c) use ($map) {
@@ -922,7 +922,7 @@ EOHTML
                         $s .= '">';
                     }
 
-                    $s .= $map[$c[$i]] ?? sprintf('\x%02X', \ord($c[$i]));
+                    $s .= $map[$c[$i]] ?? \sprintf('\x%02X', \ord($c[$i]));
                 } while (isset($c[++$i]));
 
                 return $s.'</span>';
@@ -943,10 +943,10 @@ EOHTML
                 $v .= '^';
             }
             $target = isset($attr['file']) ? '' : ' target="_blank"';
-            $v = sprintf('<a href="%s"%s rel="noopener noreferrer">%s</a>', esc($this->utf8Encode($attr['href'])), $target, $v);
+            $v = \sprintf('<a href="%s"%s rel="noopener noreferrer">%s</a>', esc($this->utf8Encode($attr['href'])), $target, $v);
         }
         if (isset($attr['lang'])) {
-            $v = sprintf('<code class="%s">%s</code>', esc($attr['lang']), $v);
+            $v = \sprintf('<code class="%s">%s</code>', esc($attr['lang']), $v);
         }
         if ('label' === $style) {
             $v .= ' ';
@@ -961,7 +961,7 @@ EOHTML
     protected function dumpLine(int $depth, bool $endOfValue = false)
     {
         if (-1 === $this->lastDepth) {
-            $this->line = sprintf($this->dumpPrefix, $this->dumpId, $this->indentPad).$this->line;
+            $this->line = \sprintf($this->dumpPrefix, $this->dumpId, $this->indentPad).$this->line;
         }
         if ($this->headerIsDumped !== ($this->outputStream ?? $this->lineDumper)) {
             $this->line = $this->getDumpHeader().$this->line;
@@ -973,7 +973,7 @@ EOHTML
                 $args[] = json_encode($this->extraDisplayOptions, \JSON_FORCE_OBJECT);
             }
             // Replace is for BC
-            $this->line .= sprintf(str_replace('"%s"', '%s', $this->dumpSuffix), implode(', ', $args));
+            $this->line .= \sprintf(str_replace('"%s"', '%s', $this->dumpSuffix), implode(', ', $args));
         }
         $this->lastDepth = $depth;
 
