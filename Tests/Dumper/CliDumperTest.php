@@ -515,10 +515,6 @@ EOTXT
 
     public function testFileLinkFormat()
     {
-        if (!class_exists(FileLinkFormatter::class)) {
-            $this->markTestSkipped(\sprintf('Class "%s" is required to run this test.', FileLinkFormatter::class));
-        }
-
         $data = new Data([
             [
                 new ClassStub(self::class),
