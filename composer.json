@@ -20,7 +20,6 @@
         "symfony/polyfill-mbstring": "^1.0"
     },
     "require-dev": {
-        "ext-iconv": "*",
         "symfony/console": "^7.4|^8.0",
         "symfony/http-kernel": "^7.4|^8.0",
         "symfony/process": "^7.4|^8.0",
