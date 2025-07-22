@@ -404,9 +404,6 @@ EOTXT
         );
     }
 
-    /**
-     * @requires PHP 8.2
-     */
     public function testNullReturnType()
     {
         $className = Php82NullStandaloneReturnType::class;
