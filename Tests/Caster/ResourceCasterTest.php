@@ -12,14 +12,10 @@
 namespace Symfony\Component\VarDumper\Tests\Caster;
 
 use PHPUnit\Framework\TestCase;
-use Symfony\Bridge\PhpUnit\ExpectUserDeprecationMessageTrait;
-use Symfony\Component\VarDumper\Caster\ResourceCaster;
-use Symfony\Component\VarDumper\Cloner\Stub;
 use Symfony\Component\VarDumper\Test\VarDumperTestTrait;
 
 class ResourceCasterTest extends TestCase
 {
-    use ExpectUserDeprecationMessageTrait;
     use VarDumperTestTrait;
 
     /**
