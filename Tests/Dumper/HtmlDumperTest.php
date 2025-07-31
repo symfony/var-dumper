@@ -11,6 +11,8 @@
 
 namespace Symfony\Component\VarDumper\Tests\Dumper;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\RequiresPhp;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\VarDumper\Caster\ImgStub;
 use Symfony\Component\VarDumper\Cloner\VarCloner;
@@ -118,9 +120,7 @@ EOTXT
         );
     }
 
-    /**
-     * @requires PHP 8.4
-     */
+    #[RequiresPhp('8.4')]
     public function testVirtualProperties()
     {
         $dumper = new HtmlDumper('php://output');
@@ -191,9 +191,7 @@ EOTXT
         );
     }
 
-    /**
-     * @dataProvider varToDumpProvider
-     */
+    #[DataProvider('varToDumpProvider')]
     public function testDumpString($var, $needle)
     {
         $dumper = new HtmlDumper();

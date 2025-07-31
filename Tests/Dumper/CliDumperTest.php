@@ -11,6 +11,8 @@
 
 namespace Symfony\Component\VarDumper\Tests\Dumper;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\RequiresPhp;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\ErrorHandler\ErrorRenderer\FileLinkFormatter;
 use Symfony\Component\VarDumper\Caster\ClassStub;
@@ -118,9 +120,7 @@ EOTXT
         );
     }
 
-    /**
-     * @dataProvider provideDumpWithCommaFlagTests
-     */
+    #[DataProvider('provideDumpWithCommaFlagTests')]
     public function testDumpWithCommaFlag($expected, $flags)
     {
         $dumper = new CliDumper(null, null, $flags);
@@ -305,9 +305,7 @@ EOTXT
         putenv('DUMP_STRING_LENGTH=');
     }
 
-    /**
-     * @requires PHP 8.4
-     */
+    #[RequiresPhp('8.4')]
     public function testVirtualProperties()
     {
         $this->assertDumpEquals(<<<EODUMP
@@ -452,9 +450,7 @@ EOTXT,
         yield [[], 0, "\e[0;38;5;208m[]\e[m\n"];
     }
 
-    /**
-     * @dataProvider provideDumpArrayWithColor
-     */
+    #[DataProvider('provideDumpArrayWithColor')]
     public function testDumpArrayWithColor($value, $flags, $expectedOut)
     {
         if ('\\' === \DIRECTORY_SEPARATOR) {

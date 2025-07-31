@@ -15,12 +15,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\PersistentCollection;
+use PHPUnit\Framework\Attributes\RequiresMethod;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\VarDumper\Test\VarDumperTestTrait;
 
-/**
- * @requires function \Doctrine\Common\Collections\ArrayCollection::__construct
- */
+#[RequiresMethod(ArrayCollection::class, '__construct')]
 class DoctrineCasterTest extends TestCase
 {
     use VarDumperTestTrait;

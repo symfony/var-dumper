@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\VarDumper\Tests\Caster;
 
+use PHPUnit\Framework\Attributes\RequiresPhp;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\VarDumper\Caster\ArgsStub;
 use Symfony\Component\VarDumper\Caster\ClassStub;
@@ -103,9 +104,7 @@ EODUMP;
         $this->assertDumpMatchesFormat($expectedDump, $args);
     }
 
-    /**
-     * @requires PHP 8.4
-     */
+    #[RequiresPhp('8.4')]
     public function testVirtualPropertyStub()
     {
         $class = new \ReflectionClass(VirtualProperty::class);
@@ -120,9 +119,7 @@ EODUMP;
         $this->assertDumpMatchesFormat($expectedDump, $args);
     }
 
-    /**
-     * @requires PHP 8.4
-     */
+    #[RequiresPhp('8.4')]
     public function testVirtualPropertyWithoutTypeStub()
     {
         $class = new \ReflectionClass(VirtualProperty::class);
@@ -253,7 +250,7 @@ EODUMP;
 
         $expectedDump = <<<'EODUMP'
 <foo></foo><bar><span class=sf-dump-note>array:1</span> [<samp data-depth=1 class=sf-dump-expanded>
-  <span class=sf-dump-index>0</span> => "<a href="%sStubCasterTest.php:245" rel="noopener noreferrer"><span class=sf-dump-str title="19 characters">Exception@anonymous</span></a>"
+  <span class=sf-dump-index>0</span> => "<a href="%sStubCasterTest.php:242" rel="noopener noreferrer"><span class=sf-dump-str title="19 characters">Exception@anonymous</span></a>"
 </samp>]
 </bar>
 EODUMP;
