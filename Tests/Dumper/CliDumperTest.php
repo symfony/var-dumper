@@ -12,7 +12,6 @@
 namespace Symfony\Component\VarDumper\Tests\Dumper;
 
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\ErrorHandler\ErrorRenderer\FileLinkFormatter;
 use Symfony\Component\VarDumper\Caster\ClassStub;
 use Symfony\Component\VarDumper\Caster\CutStub;
 use Symfony\Component\VarDumper\Cloner\Data;
