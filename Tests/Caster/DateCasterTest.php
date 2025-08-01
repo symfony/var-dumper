@@ -39,7 +39,7 @@ class DateCasterTest extends TestCase
     }
 
     #[DataProvider('provideDateTimes')]
-    public function testDumpDateTime($time, $timezone, $xDate, $xTimestamp)
+    public function testDumpDateTime($time, $timezone, $xDate, $xTimestamp, $xInfos)
     {
         $date = new \DateTime($time, new \DateTimeZone($timezone));
 
@@ -53,7 +53,7 @@ EODUMP;
     }
 
     #[DataProvider('provideDateTimes')]
-    public function testDumpDateTimeImmutable($time, $timezone, $xDate, $xTimestamp)
+    public function testDumpDateTimeImmutable($time, $timezone, $xDate, $xTimestamp, $xInfos)
     {
         $date = new \DateTimeImmutable($time, new \DateTimeZone($timezone));
 
@@ -194,7 +194,7 @@ EODUMP;
     }
 
     #[DataProvider('provideIntervals')]
-    public function testDumpInterval($intervalSpec, $ms, $invert, $expected)
+    public function testDumpInterval($intervalSpec, $ms, $invert, $expected, $xSeconds)
     {
         $interval = $this->createInterval($intervalSpec, $ms, $invert);
 
@@ -208,7 +208,7 @@ EODUMP;
     }
 
     #[DataProvider('provideIntervals')]
-    public function testDumpIntervalExcludingVerbosity($intervalSpec, $ms, $invert, $expected)
+    public function testDumpIntervalExcludingVerbosity($intervalSpec, $ms, $invert, $expected, $xSeconds)
     {
         $interval = $this->createInterval($intervalSpec, $ms, $invert);
 
@@ -291,7 +291,7 @@ EODUMP;
     }
 
     #[DataProvider('provideTimeZones')]
-    public function testDumpTimeZone($timezone, $expected)
+    public function testDumpTimeZone($timezone, $expected, $xRegion)
     {
         $timezone = new \DateTimeZone($timezone);
 
@@ -305,7 +305,7 @@ EODUMP;
     }
 
     #[DataProvider('provideTimeZones')]
-    public function testDumpTimeZoneExcludingVerbosity($timezone, $expected)
+    public function testDumpTimeZoneExcludingVerbosity($timezone, $expected, $xRegion)
     {
         $timezone = new \DateTimeZone($timezone);
 
@@ -378,7 +378,7 @@ EODUMP;
     }
 
     #[DataProvider('providePeriods')]
-    public function testDumpPeriod($start, $interval, $end, $options, $expected)
+    public function testDumpPeriod($start, $interval, $end, $options, $expected, $xDates)
     {
         $p = new \DatePeriod(new \DateTimeImmutable($start), new \DateInterval($interval), \is_int($end) ? $end : new \DateTime($end), $options);
 
