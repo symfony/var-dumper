@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\VarDumper\Tests\Caster;
 
+use PHPUnit\Framework\Attributes\RequiresPhpExtension;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\VarDumper\Caster\ConstStub;
 use Symfony\Component\VarDumper\Caster\EnumStub;
@@ -25,9 +26,7 @@ class PdoCasterTest extends TestCase
 {
     use VarDumperTestTrait;
 
-    /**
-     * @requires extension pdo_sqlite
-     */
+    #[RequiresPhpExtension('pdo_sqlite')]
     public function testCastPdo()
     {
         $pdo = new \PDO('sqlite::memory:');

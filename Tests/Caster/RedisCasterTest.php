@@ -11,21 +11,22 @@
 
 namespace Symfony\Component\VarDumper\Tests\Caster;
 
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RequiresPhpExtension;
+use PHPUnit\Framework\Attributes\TestWith;
 use PHPUnit\Framework\TestCase;
+use Relay\Relay;
 use Symfony\Component\VarDumper\Test\VarDumperTestTrait;
 
 /**
  * @author Nicolas Grekas <p@tchwork.com>
- *
- * @group integration
  */
+#[Group('integration')]
 class RedisCasterTest extends TestCase
 {
     use VarDumperTestTrait;
 
-    /**
-     * @requires extension redis
-     */
+    #[RequiresPhpExtension('redis')]
     public function testNotConnected()
     {
         $redis = new \Redis();
@@ -39,10 +40,8 @@ EODUMP;
         $this->assertDumpMatchesFormat($xCast, $redis);
     }
 
-    /**
-     * @testWith ["Redis"]
-     *           ["Relay\\Relay"]
-     */
+    #[TestWith([\Redis::class])]
+    #[TestWith([Relay::class])]
     public function testConnected(string $class)
     {
         if (!class_exists($class)) {

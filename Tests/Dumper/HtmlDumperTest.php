@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\VarDumper\Tests\Dumper;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\VarDumper\Caster\ImgStub;
 use Symfony\Component\VarDumper\Cloner\VarCloner;
@@ -188,9 +189,7 @@ EOTXT
         );
     }
 
-    /**
-     * @dataProvider varToDumpProvider
-     */
+    #[DataProvider('varToDumpProvider')]
     public function testDumpString($var, $needle)
     {
         $dumper = new HtmlDumper();

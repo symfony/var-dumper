@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\VarDumper\Tests\Caster;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\VarDumper\Caster\Caster;
 use Symfony\Component\VarDumper\Test\VarDumperTestTrait;
@@ -32,9 +33,7 @@ class CasterTest extends TestCase
         "\0Foo\0private" => 'priv',
     ];
 
-    /**
-     * @dataProvider provideFilter
-     */
+    #[DataProvider('provideFilter')]
     public function testFilter($filter, $expectedDiff, $listedProperties = null)
     {
         if (null === $listedProperties) {

@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\VarDumper\Tests\Dumper;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\VarDumper\Caster\ClassStub;
 use Symfony\Component\VarDumper\Caster\CutStub;
@@ -117,9 +118,7 @@ EOTXT
         );
     }
 
-    /**
-     * @dataProvider provideDumpWithCommaFlagTests
-     */
+    #[DataProvider('provideDumpWithCommaFlagTests')]
     public function testDumpWithCommaFlag($expected, $flags)
     {
         $dumper = new CliDumper(null, null, $flags);
@@ -448,9 +447,7 @@ EOTXT,
         yield [[], 0, "\e[0;38;5;208m[]\e[m\n"];
     }
 
-    /**
-     * @dataProvider provideDumpArrayWithColor
-     */
+    #[DataProvider('provideDumpArrayWithColor')]
     public function testDumpArrayWithColor($value, $flags, $expectedOut)
     {
         if ('\\' === \DIRECTORY_SEPARATOR) {

@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\VarDumper\Tests\Caster;
 
+use PHPUnit\Framework\Attributes\RequiresPhpExtension;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\VarDumper\Caster\GmpCaster;
 use Symfony\Component\VarDumper\Cloner\Stub;
@@ -20,9 +21,7 @@ class GmpCasterTest extends TestCase
 {
     use VarDumperTestTrait;
 
-    /**
-     * @requires extension gmp
-     */
+    #[RequiresPhpExtension('gmp')]
     public function testCastGmp()
     {
         $gmpString = gmp_init('1234');

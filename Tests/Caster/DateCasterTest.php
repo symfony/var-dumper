@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\VarDumper\Tests\Caster;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\VarDumper\Caster\Caster;
 use Symfony\Component\VarDumper\Caster\DateCaster;
@@ -37,9 +38,7 @@ class DateCasterTest extends TestCase
         date_default_timezone_set($this->previousTimezone);
     }
 
-    /**
-     * @dataProvider provideDateTimes
-     */
+    #[DataProvider('provideDateTimes')]
     public function testDumpDateTime($time, $timezone, $xDate, $xTimestamp)
     {
         $date = new \DateTime($time, new \DateTimeZone($timezone));
@@ -53,9 +52,7 @@ EODUMP;
         $this->assertDumpEquals($xDump, $date);
     }
 
-    /**
-     * @dataProvider provideDateTimes
-     */
+    #[DataProvider('provideDateTimes')]
     public function testDumpDateTimeImmutable($time, $timezone, $xDate, $xTimestamp)
     {
         $date = new \DateTimeImmutable($time, new \DateTimeZone($timezone));
@@ -69,9 +66,7 @@ EODUMP;
         $this->assertDumpEquals($xDump, $date);
     }
 
-    /**
-     * @dataProvider provideDateTimes
-     */
+    #[DataProvider('provideDateTimes')]
     public function testCastDateTime($time, $timezone, $xDate, $xTimestamp, $xInfos)
     {
         $stub = new Stub();
@@ -118,9 +113,7 @@ EODUMP;
         ];
     }
 
-    /**
-     * @dataProvider provideNoTimezoneDateTimes
-     */
+    #[DataProvider('provideNoTimezoneDateTimes')]
     public function testCastDateTimeNoTimezone($time, $xDate, $xInfos)
     {
         date_default_timezone_set('UTC');
@@ -200,9 +193,7 @@ EODUMP;
         $this->assertDumpMatchesFormat($xDump, $dateCast["\0~\0date"]);
     }
 
-    /**
-     * @dataProvider provideIntervals
-     */
+    #[DataProvider('provideIntervals')]
     public function testDumpInterval($intervalSpec, $ms, $invert, $expected)
     {
         $interval = $this->createInterval($intervalSpec, $ms, $invert);
@@ -216,9 +207,7 @@ EODUMP;
         $this->assertDumpMatchesFormat($xDump, $interval);
     }
 
-    /**
-     * @dataProvider provideIntervals
-     */
+    #[DataProvider('provideIntervals')]
     public function testDumpIntervalExcludingVerbosity($intervalSpec, $ms, $invert, $expected)
     {
         $interval = $this->createInterval($intervalSpec, $ms, $invert);
@@ -232,9 +221,7 @@ EODUMP;
         $this->assertDumpEquals($xDump, $interval, Caster::EXCLUDE_VERBOSE);
     }
 
-    /**
-     * @dataProvider provideIntervals
-     */
+    #[DataProvider('provideIntervals')]
     public function testCastInterval($intervalSpec, $ms, $invert, $xInterval, $xSeconds)
     {
         $interval = $this->createInterval($intervalSpec, $ms, $invert);
@@ -303,9 +290,7 @@ EODUMP;
         ];
     }
 
-    /**
-     * @dataProvider provideTimeZones
-     */
+    #[DataProvider('provideTimeZones')]
     public function testDumpTimeZone($timezone, $expected)
     {
         $timezone = new \DateTimeZone($timezone);
@@ -319,9 +304,7 @@ EODUMP;
         $this->assertDumpMatchesFormat($xDump, $timezone);
     }
 
-    /**
-     * @dataProvider provideTimeZones
-     */
+    #[DataProvider('provideTimeZones')]
     public function testDumpTimeZoneExcludingVerbosity($timezone, $expected)
     {
         $timezone = new \DateTimeZone($timezone);
@@ -335,9 +318,7 @@ EODUMP;
         $this->assertDumpMatchesFormat($xDump, $timezone, Caster::EXCLUDE_VERBOSE);
     }
 
-    /**
-     * @dataProvider provideTimeZones
-     */
+    #[DataProvider('provideTimeZones')]
     public function testCastTimeZone($timezone, $xTimezone, $xRegion)
     {
         $timezone = new \DateTimeZone($timezone);
@@ -396,9 +377,7 @@ EODUMP;
         ];
     }
 
-    /**
-     * @dataProvider providePeriods
-     */
+    #[DataProvider('providePeriods')]
     public function testDumpPeriod($start, $interval, $end, $options, $expected)
     {
         $p = new \DatePeriod(new \DateTimeImmutable($start), new \DateInterval($interval), \is_int($end) ? $end : new \DateTime($end), $options);
@@ -412,9 +391,7 @@ EODUMP;
         $this->assertDumpMatchesFormat($xDump, $p);
     }
 
-    /**
-     * @dataProvider providePeriods
-     */
+    #[DataProvider('providePeriods')]
     public function testCastPeriod($start, $interval, $end, $options, $xPeriod, $xDates)
     {
         $p = new \DatePeriod(new \DateTimeImmutable($start, new \DateTimeZone('UTC')), new \DateInterval($interval), \is_int($end) ? $end : new \DateTimeImmutable($end, new \DateTimeZone('UTC')), $options);

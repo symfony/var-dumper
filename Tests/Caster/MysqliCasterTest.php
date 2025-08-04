@@ -11,14 +11,13 @@
 
 namespace Symfony\Component\VarDumper\Tests\Caster;
 
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RequiresPhpExtension;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\VarDumper\Test\VarDumperTestTrait;
 
-/**
- * @requires extension mysqli
- *
- * @group integration
- */
+#[RequiresPhpExtension('mysqli')]
+#[Group('integration')]
 class MysqliCasterTest extends TestCase
 {
     use VarDumperTestTrait;

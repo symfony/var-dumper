@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\VarDumper\Tests\Caster;
 
+use PHPUnit\Framework\Attributes\RequiresPhpExtension;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\VarDumper\Test\VarDumperTestTrait;
 
@@ -18,9 +19,7 @@ class ResourceCasterTest extends TestCase
 {
     use VarDumperTestTrait;
 
-    /**
-     * @requires extension dba
-     */
+    #[RequiresPhpExtension('dba')]
     public function testCastDba()
     {
         $dba = dba_open(sys_get_temp_dir().'/test.db', 'c');
