@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\VarDumper\Tests\Caster;
 
+use PHPUnit\Framework\Attributes\RequiresPhp;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\VarDumper\Caster\Caster;
 use Symfony\Component\VarDumper\Test\VarDumperTestTrait;
@@ -457,9 +458,7 @@ EOTXT
         );
     }
 
-    /**
-     * @requires PHP < 8.4
-     */
+    #[RequiresPhp('<8.4')]
     public function testGeneratorPriorTo84()
     {
         if (\extension_loaded('xdebug')) {
@@ -532,9 +531,7 @@ EODUMP;
         $this->assertDumpMatchesFormat($expectedDump, $generator);
     }
 
-    /**
-     * @requires PHP 8.4
-     */
+    #[RequiresPhp('8.4')]
     public function testGenerator()
     {
         if (\extension_loaded('xdebug')) {

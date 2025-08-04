@@ -11,15 +11,16 @@
 
 namespace Symfony\Component\VarDumper\Tests\Caster;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\RequiresPhpExtension;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\VarDumper\Caster\FFICaster;
 use Symfony\Component\VarDumper\Test\VarDumperTestTrait;
 
 /**
  * @author Kirill Nesmeyanov <nesk@xakep.ru>
- *
- * @requires extension ffi
  */
+#[RequiresPhpExtension('ffi')]
 class FFICasterTest extends TestCase
 {
     use VarDumperTestTrait;
@@ -114,9 +115,7 @@ class FFICasterTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider scalarsDataProvider
-     */
+    #[DataProvider('scalarsDataProvider')]
     public function testCastScalar(string $type, string $value, int $size, int $align)
     {
         $this->assertDumpEquals(<<<PHP

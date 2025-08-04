@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\VarDumper\Tests\Command\Descriptor;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\VarDumper\Cloner\Data;
@@ -48,9 +49,7 @@ class HtmlDescriptorTest extends TestCase
         $this->assertDoesNotMatchRegularExpression('#<style>(.*?)</style><script>(.*?)</script>(.*)#', $output->fetch(), 'styles & scripts are output only once');
     }
 
-    /**
-     * @dataProvider provideContext
-     */
+    #[DataProvider('provideContext')]
     public function testDescribe(array $context, string $expectedOutput)
     {
         $output = new BufferedOutput();

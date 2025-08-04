@@ -11,19 +11,17 @@
 
 namespace Symfony\Component\VarDumper\Tests\Caster;
 
+use PHPUnit\Framework\Attributes\RequiresPhp;
+use PHPUnit\Framework\Attributes\RequiresPhpExtension;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\VarDumper\Test\VarDumperTestTrait;
 
-/**
- * @requires extension sockets
- */
+#[RequiresPhpExtension('sockets')]
 class SocketCasterTest extends TestCase
 {
     use VarDumperTestTrait;
 
-    /**
-     * @requires PHP 8.3
-     */
+    #[RequiresPhp('8.3')]
     public function testCastSocket()
     {
         $socket = socket_create(\AF_INET, \SOCK_DGRAM, \SOL_UDP);
@@ -39,9 +37,7 @@ Socket {
 EODUMP, $socket);
     }
 
-    /**
-     * @requires PHP < 8.3
-     */
+    #[RequiresPhp('<8.3')]
     public function testCastSocketPriorToPhp83()
     {
         $socket = socket_create(\AF_INET, \SOCK_DGRAM, \SOL_UDP);
@@ -56,9 +52,7 @@ Socket {
 EODUMP, $socket);
     }
 
-    /**
-     * @requires PHP 8.3
-     */
+    #[RequiresPhp('8.3')]
     public function testCastSocketIpV6()
     {
         $socket = socket_create(\AF_INET6, \SOCK_STREAM, \SOL_TCP);
@@ -75,9 +69,7 @@ Socket {
 EODUMP, $socket);
     }
 
-    /**
-     * @requires PHP < 8.3
-     */
+    #[RequiresPhp('<8.3')]
     public function testCastSocketIpV6PriorToPhp83()
     {
         $socket = socket_create(\AF_INET6, \SOCK_STREAM, \SOL_TCP);
@@ -93,9 +85,7 @@ Socket {
 EODUMP, $socket);
     }
 
-    /**
-     * @requires PHP 8.3
-     */
+    #[RequiresPhp('8.3')]
     public function testCastUnixSocket()
     {
         $socket = socket_create(\AF_UNIX, \SOCK_STREAM, 0);
@@ -112,9 +102,7 @@ Socket {
 EODUMP, $socket);
     }
 
-    /**
-     * @requires PHP < 8.3
-     */
+    #[RequiresPhp('<8.3')]
     public function testCastUnixSocketPriorToPhp83()
     {
         $socket = socket_create(\AF_UNIX, \SOCK_STREAM, 0);

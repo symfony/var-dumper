@@ -11,6 +11,8 @@
 
 namespace Symfony\Component\VarDumper\Tests\Caster;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\RequiresPhp;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\VarDumper\Test\VarDumperTestTrait;
 
@@ -34,9 +36,7 @@ class XmlReaderCasterTest extends TestCase
         $this->reader->close();
     }
 
-    /**
-     * @requires PHP < 8.4
-     */
+    #[RequiresPhp('<8.4')]
     public function testParserPropertyPriorToPhp84()
     {
         $this->reader->setParserProperty(\XMLReader::SUBST_ENTITIES, true);
@@ -55,9 +55,7 @@ EODUMP;
         $this->assertDumpMatchesFormat($expectedDump, $this->reader);
     }
 
-    /**
-     * @requires PHP 8.4
-     */
+    #[RequiresPhp('8.4')]
     public function testParserProperty()
     {
         $this->reader->setParserProperty(\XMLReader::SUBST_ENTITIES, true);
@@ -80,11 +78,9 @@ EODUMP;
     /**
      * This test only work before PHP 8.4. In PHP 8.4, XMLReader properties are virtual
      * and their values are not dumped.
-     *
-     * @requires PHP < 8.4
-     *
-     * @dataProvider provideNodes
      */
+    #[DataProvider('provideNodes')]
+    #[RequiresPhp('<8.4')]
     public function testNodes($seek, $expectedDump)
     {
         while ($seek--) {
@@ -275,9 +271,7 @@ EODUMP
         ];
     }
 
-    /**
-     * @requires PHP < 8.4
-     */
+    #[RequiresPhp('<8.4')]
     public function testWithUninitializedXMLReaderPriorToPhp84()
     {
         $this->reader = new \XMLReader();
@@ -292,9 +286,7 @@ EODUMP;
         $this->assertDumpMatchesFormat($expectedDump, $this->reader);
     }
 
-    /**
-     * @requires PHP 8.4
-     */
+    #[RequiresPhp('8.4')]
     public function testWithUninitializedXMLReader()
     {
         $this->reader = new \XMLReader();

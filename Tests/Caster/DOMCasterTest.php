@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\VarDumper\Tests\Caster;
 
+use PHPUnit\Framework\Attributes\RequiresPhp;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\VarDumper\Test\VarDumperTestTrait;
 
@@ -32,9 +33,7 @@ class DOMCasterTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP 8.4
-     */
+    #[RequiresPhp('8.4')]
     public function testCastModernImplementation()
     {
         $implementation = new \Dom\Implementation();
@@ -49,9 +48,7 @@ class DOMCasterTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP < 8.4
-     */
+    #[RequiresPhp('<8.4')]
     public function testCastNodePriorToPhp84()
     {
         $doc = new \DOMDocument();
@@ -70,9 +67,7 @@ class DOMCasterTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP 8.4
-     */
+    #[RequiresPhp('8.4')]
     public function testCastNode()
     {
         $doc = new \DOMDocument();
@@ -91,9 +86,7 @@ class DOMCasterTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP 8.4
-     */
+    #[RequiresPhp('8.4')]
     public function testCastModernNode()
     {
         $doc = \Dom\XMLDocument::createFromString('<foo><bar/></foo>');
@@ -129,9 +122,7 @@ class DOMCasterTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP 8.4
-     */
+    #[RequiresPhp('8.4')]
     public function testCastXMLDocument()
     {
         $doc = \Dom\XMLDocument::createFromString('<foo><bar/></foo>');
@@ -150,9 +141,7 @@ class DOMCasterTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP 8.4
-     */
+    #[RequiresPhp('8.4')]
     public function testCastHTMLDocument()
     {
         $doc = \Dom\HTMLDocument::createFromString('<!DOCTYPE html><html><body><p>foo</p></body></html>');
@@ -166,9 +155,7 @@ class DOMCasterTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP < 8.4
-     */
+    #[RequiresPhp('<8.4')]
     public function testCastTextPriorToPhp84()
     {
         $doc = new \DOMText('foo');
@@ -182,9 +169,7 @@ class DOMCasterTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP 8.4
-     */
+    #[RequiresPhp('8.4')]
     public function testCastText()
     {
         $doc = new \DOMText('foo');
@@ -198,9 +183,7 @@ class DOMCasterTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP 8.4
-     */
+    #[RequiresPhp('8.4')]
     public function testCastModernText()
     {
         $text = \Dom\HTMLDocument::createEmpty()->createTextNode('foo');
@@ -213,9 +196,7 @@ class DOMCasterTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP < 8.4
-     */
+    #[RequiresPhp('<8.4')]
     public function testCastAttrPriorToPhp84()
     {
         $attr = new \DOMAttr('attr', 'value');
@@ -233,9 +214,7 @@ class DOMCasterTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP 8.4
-     */
+    #[RequiresPhp('8.4')]
     public function testCastAttr()
     {
         $attr = new \DOMAttr('attr', 'value');
@@ -253,9 +232,7 @@ class DOMCasterTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP 8.4
-     */
+    #[RequiresPhp('8.4')]
     public function testCastAttrPrior()
     {
         $attr = new \DOMAttr('attr', 'value');
@@ -273,9 +250,7 @@ class DOMCasterTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP 8.4
-     */
+    #[RequiresPhp('8.4')]
     public function testCastModernAttr()
     {
         $attr = \Dom\HTMLDocument::createEmpty()->createAttribute('attr');
@@ -292,9 +267,7 @@ class DOMCasterTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP < 8.4
-     */
+    #[RequiresPhp('<8.4')]
     public function testCastElementPriorToPhp84()
     {
         $attr = new \DOMElement('foo');
@@ -308,9 +281,7 @@ class DOMCasterTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP 8.4
-     */
+    #[RequiresPhp('8.4')]
     public function testCastElement()
     {
         $attr = new \DOMElement('foo');
@@ -324,9 +295,7 @@ class DOMCasterTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP 8.4
-     */
+    #[RequiresPhp('8.4')]
     public function testCastModernElement()
     {
         $attr = \Dom\HTMLDocument::createEmpty()->createElement('foo');
@@ -340,9 +309,7 @@ class DOMCasterTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP < 8.4
-     */
+    #[RequiresPhp('<8.4')]
     public function testCastDocumentTypePriorToPhp84()
     {
         $implementation = new \DOMImplementation();
@@ -362,9 +329,7 @@ class DOMCasterTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP 8.4
-     */
+    #[RequiresPhp('8.4')]
     public function testCastDocumentType()
     {
         $implementation = new \DOMImplementation();
@@ -384,9 +349,7 @@ class DOMCasterTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP 8.4
-     */
+    #[RequiresPhp('8.4')]
     public function testCastModernDocumentType()
     {
         $implementation = new \Dom\Implementation();
@@ -406,9 +369,7 @@ class DOMCasterTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP < 8.4
-     */
+    #[RequiresPhp('<8.4')]
     public function testCastProcessingInstructionPriorToPhp84()
     {
         $entity = new \DOMProcessingInstruction('target', 'data');
@@ -423,9 +384,7 @@ class DOMCasterTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP 8.4
-     */
+    #[RequiresPhp('8.4')]
     public function testCastProcessingInstruction()
     {
         $entity = new \DOMProcessingInstruction('target', 'data');
@@ -440,9 +399,7 @@ class DOMCasterTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP 8.4
-     */
+    #[RequiresPhp('8.4')]
     public function testCastModernProcessingInstruction()
     {
         $entity = \Dom\HTMLDocument::createEmpty()->createProcessingInstruction('target', 'data');
@@ -458,9 +415,7 @@ class DOMCasterTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP < 8.4
-     */
+    #[RequiresPhp('<8.4')]
     public function testCastXPathPriorToPhp84()
     {
         $xpath = new \DOMXPath(new \DOMDocument());
@@ -475,9 +430,7 @@ class DOMCasterTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP 8.4
-     */
+    #[RequiresPhp('8.4')]
     public function testCastXPath()
     {
         $xpath = new \DOMXPath(new \DOMDocument());
@@ -492,9 +445,7 @@ class DOMCasterTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP 8.4
-     */
+    #[RequiresPhp('8.4')]
     public function testCastModernXPath()
     {
         $entity = new \Dom\XPath(\Dom\HTMLDocument::createEmpty());

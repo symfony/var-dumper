@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\VarDumper\Tests\Caster;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\VarDumper\Test\VarDumperTestTrait;
 
@@ -64,7 +65,7 @@ EOTXT
         ];
     }
 
-    /** @dataProvider getCastFileInfoTests */
+    #[DataProvider('getCastFileInfoTests')]
     public function testCastFileInfo($file, $dump)
     {
         $this->assertDumpMatchesFormat($dump, new \SplFileInfo($file));
@@ -119,9 +120,7 @@ EOTXT;
         $this->assertDumpMatchesFormat($dump, $var);
     }
 
-    /**
-     * @dataProvider provideCastSplDoublyLinkedList
-     */
+    #[DataProvider('provideCastSplDoublyLinkedList')]
     public function testCastSplDoublyLinkedList($modeValue, $modeDump)
     {
         $var = new \SplDoublyLinkedList();

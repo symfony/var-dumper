@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\VarDumper\Tests\Command\Descriptor;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\VarDumper\Cloner\Data;
@@ -37,9 +38,7 @@ class CliDescriptorTest extends TestCase
         putenv('TERMINAL_EMULATOR'.(self::$prevTerminalEmulator ? '='.self::$prevTerminalEmulator : ''));
     }
 
-    /**
-     * @dataProvider provideContext
-     */
+    #[DataProvider('provideContext')]
     public function testDescribe(array $context, string $expectedOutput, bool $decorated = false)
     {
         $output = new BufferedOutput();
