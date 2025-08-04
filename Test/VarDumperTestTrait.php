@@ -37,6 +37,9 @@ trait VarDumperTestTrait
         $this->varDumperConfig['flags'] = $flags;
     }
 
+    /**
+     * @after
+     */
     #[After]
     protected function tearDownVarDumper(): void
     {
