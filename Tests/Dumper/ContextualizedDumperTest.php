@@ -19,16 +19,19 @@ use Symfony\Component\VarDumper\Dumper\ContextualizedDumper;
 
 /**
  * @author Kévin Thérage <therage.kevin@gmail.com>
+ *
+ * @backupGlobals
  */
 class ContextualizedDumperTest extends TestCase
 {
     public function testContextualizedCliDumper()
     {
+        $_ENV['SYMFONY_IDE'] = $_SERVER['SYMFONY_IDE'] = '';
         $wrappedDumper = new CliDumper('php://output');
         $wrappedDumper->setColors(true);
 
         $var = 'example';
-        $href = \sprintf('file://%s#L%s', __FILE__, 37);
+        $href = \sprintf('file://%s#L%s', __FILE__, 40);
         $dumper = new ContextualizedDumper($wrappedDumper, [new SourceContextProvider()]);
         $cloner = new VarCloner();
         $data = $cloner->cloneVar($var);
