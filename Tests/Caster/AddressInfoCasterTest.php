@@ -23,11 +23,11 @@ class AddressInfoCasterTest extends TestCase
     public function testCaster()
     {
         $xDump = <<<EODUMP
-AddressInfo {
-  ai_flags: 0
-  ai_family: AF_INET%A
-}
-EODUMP;
+            AddressInfo {
+              ai_flags: 0
+              ai_family: AF_INET%A
+            }
+            EODUMP;
 
         $this->assertDumpMatchesFormat($xDump, socket_addrinfo_lookup('localhost')[0]);
     }

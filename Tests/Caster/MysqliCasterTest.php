@@ -28,10 +28,10 @@ class MysqliCasterTest extends TestCase
         $driver->report_mode = 3;
 
         $xCast = <<<EODUMP
-mysqli_driver {%A
-  +report_mode: 3
-}
-EODUMP;
+            mysqli_driver {%A
+              +report_mode: 3
+            }
+            EODUMP;
 
         $this->assertDumpMatchesFormat($xCast, $driver);
     }

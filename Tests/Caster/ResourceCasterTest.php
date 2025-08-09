@@ -58,10 +58,10 @@ class ResourceCasterTest extends TestCase
 
         $this->assertDumpMatchesFormat(
             <<<'EODUMP'
-dba resource {
-  file: %s
-}
-EODUMP, $dba);
+                dba resource {
+                  file: %s
+                }
+                EODUMP, $dba);
     }
 
     #[RequiresPhp('8.4.2')]
@@ -72,10 +72,10 @@ EODUMP, $dba);
 
         $this->assertDumpMatchesFormat(
             <<<'EODUMP'
-Dba\Connection {
-  +file: %s
-}
-EODUMP, $dba);
+                Dba\Connection {
+                  +file: %s
+                }
+                EODUMP, $dba);
     }
 
     #[RequiresPhp('8.4')]
@@ -90,8 +90,8 @@ EODUMP, $dba);
 
         $this->assertDumpMatchesFormat(
             <<<'EODUMP'
-Dba\Connection {
-}
-EODUMP, $dba);
+                Dba\Connection {
+                }
+                EODUMP, $dba);
     }
 }

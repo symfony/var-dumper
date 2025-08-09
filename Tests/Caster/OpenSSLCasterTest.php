@@ -33,19 +33,19 @@ class OpenSSLCasterTest extends TestCase
 
         $this->assertDumpMatchesFormat(
             <<<'EODUMP'
-OpenSSLAsymmetricKey {
-  bits: 1024
-  key: """
-    -----BEGIN PUBLIC KEY-----\n
-    %A
-    %A
-    %A
-    %A
-    -----END PUBLIC KEY-----\n
-    """
-  type: 0
-}
-EODUMP, $key);
+                OpenSSLAsymmetricKey {
+                  bits: 1024
+                  key: """
+                    -----BEGIN PUBLIC KEY-----\n
+                    %A
+                    %A
+                    %A
+                    %A
+                    -----END PUBLIC KEY-----\n
+                    """
+                  type: 0
+                }
+                EODUMP, $key);
     }
 
     public function testOpensslCsr()
@@ -68,15 +68,15 @@ EODUMP, $key);
 
         $this->assertDumpMatchesFormat(
             <<<'EODUMP'
-OpenSSLCertificateSigningRequest {
-  countryName: "FR"
-  stateOrProvinceName: "Ile-de-France"
-  localityName: "Paris"
-  organizationName: "Symfony"
-  organizationalUnitName: "Security"
-  commonName: "symfony.com"
-  emailAddress: "test@symfony.com"
-}
-EODUMP, $csr);
+                OpenSSLCertificateSigningRequest {
+                  countryName: "FR"
+                  stateOrProvinceName: "Ile-de-France"
+                  localityName: "Paris"
+                  organizationName: "Symfony"
+                  organizationalUnitName: "Security"
+                  commonName: "symfony.com"
+                  emailAddress: "test@symfony.com"
+                }
+                EODUMP, $csr);
     }
 }

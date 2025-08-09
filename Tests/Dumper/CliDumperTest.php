@@ -64,57 +64,57 @@ class CliDumperTest extends TestCase
 
         $this->assertStringMatchesFormat(
             <<<EOTXT
-array:25 [
-  "number" => 1
-  0 => &1 null
-  "const" => 1.1
-  1 => true
-  2 => false
-  3 => NAN
-  4 => INF
-  5 => -INF
-  6 => {$intMax}
-  "str" => "déjà\\n"
-  7 => b"""
-    é\\x01test\\t\\n
-    ing
-    """
-  "bo\\u{FEFF}m" => "te\\u{FEFF}st"
-  "[]" => []
-  "res" => stream resource {@{$res}
-%A  wrapper_type: "plainfile"
-    stream_type: "STDIO"
-    mode: "r"
-    unread_bytes: 0
-    seekable: true
-%A  options: []
-  }
-  "obj" => Symfony\Component\VarDumper\Tests\Fixture\DumbFoo {#%d
-    +foo: ""…3
-    +"bar": "bar"
-  }
-  "closure" => Closure(\$a, ?PDO &\$b = null) {#%d
-    class: "Symfony\Component\VarDumper\Tests\Dumper\CliDumperTest"
-    this: Symfony\Component\VarDumper\Tests\Dumper\CliDumperTest {#%d …}
-    file: "%s%eTests%eFixtures%edumb-var.php"
-    line: "{$var['line']} to {$var['line']}"
-  }
-  "line" => {$var['line']}
-  "nobj" => array:1 [
-    0 => &3 {#%d}
-  ]
-  "recurs" => &4 array:1 [
-    0 => &4 array:1 [&4]
-  ]
-  8 => &1 null
-  "sobj" => Symfony\Component\VarDumper\Tests\Fixture\DumbFoo {#%d}
-  "snobj" => &3 {#%d}
-  "snobj2" => {#%d}
-  "file" => "{$var['file']}"
-  b"bin-key-é" => ""
-]
+                array:25 [
+                  "number" => 1
+                  0 => &1 null
+                  "const" => 1.1
+                  1 => true
+                  2 => false
+                  3 => NAN
+                  4 => INF
+                  5 => -INF
+                  6 => {$intMax}
+                  "str" => "déjà\\n"
+                  7 => b"""
+                    é\\x01test\\t\\n
+                    ing
+                    """
+                  "bo\\u{FEFF}m" => "te\\u{FEFF}st"
+                  "[]" => []
+                  "res" => stream resource {@{$res}
+                %A  wrapper_type: "plainfile"
+                    stream_type: "STDIO"
+                    mode: "r"
+                    unread_bytes: 0
+                    seekable: true
+                %A  options: []
+                  }
+                  "obj" => Symfony\Component\VarDumper\Tests\Fixture\DumbFoo {#%d
+                    +foo: ""…3
+                    +"bar": "bar"
+                  }
+                  "closure" => Closure(\$a, ?PDO &\$b = null) {#%d
+                    class: "Symfony\Component\VarDumper\Tests\Dumper\CliDumperTest"
+                    this: Symfony\Component\VarDumper\Tests\Dumper\CliDumperTest {#%d …}
+                    file: "%s%eTests%eFixtures%edumb-var.php"
+                    line: "{$var['line']} to {$var['line']}"
+                  }
+                  "line" => {$var['line']}
+                  "nobj" => array:1 [
+                    0 => &3 {#%d}
+                  ]
+                  "recurs" => &4 array:1 [
+                    0 => &4 array:1 [&4]
+                  ]
+                  8 => &1 null
+                  "sobj" => Symfony\Component\VarDumper\Tests\Fixture\DumbFoo {#%d}
+                  "snobj" => &3 {#%d}
+                  "snobj2" => {#%d}
+                  "file" => "{$var['file']}"
+                  b"bin-key-é" => ""
+                ]
 
-EOTXT
+                EOTXT
             ,
             $out
         );
@@ -149,63 +149,63 @@ EOTXT
         $dump = $dumper->dump($cloner->cloneVar($ex)->withRefHandles(false), true);
 
         $this->assertStringMatchesFormat(<<<'EOTXT'
-RuntimeException {
-  #message: "foo"
-  #code: 0
-  #file: "%ACliDumperTest.php"
-  #line: %d
-  trace: {
-    %ACliDumperTest.php:%d {
-      Symfony\Component\VarDumper\Tests\Dumper\CliDumperTest->testDumpWithCommaFlagsAndExceptionCodeExcerpt()
-      › 
-      › $ex = new \RuntimeException('foo');
-      › 
-    }
-    %A
-  }
-}
+            RuntimeException {
+              #message: "foo"
+              #code: 0
+              #file: "%ACliDumperTest.php"
+              #line: %d
+              trace: {
+                %ACliDumperTest.php:%d {
+                  Symfony\Component\VarDumper\Tests\Dumper\CliDumperTest->testDumpWithCommaFlagsAndExceptionCodeExcerpt()
+                  › 
+                  › $ex = new \RuntimeException('foo');
+                  › 
+                }
+                %A
+              }
+            }
 
-EOTXT
+            EOTXT
             , $dump);
     }
 
     public static function provideDumpWithCommaFlagTests()
     {
         $expected = <<<'EOTXT'
-array:3 [
-  "array" => array:2 [
-    0 => "a",
-    1 => "b"
-  ],
-  "string" => "hello",
-  "multiline string" => """
-    this\n
-    is\n
-    a\multiline\n
-    string
-    """
-]
+            array:3 [
+              "array" => array:2 [
+                0 => "a",
+                1 => "b"
+              ],
+              "string" => "hello",
+              "multiline string" => """
+                this\n
+                is\n
+                a\multiline\n
+                string
+                """
+            ]
 
-EOTXT;
+            EOTXT;
 
         yield [$expected, CliDumper::DUMP_COMMA_SEPARATOR];
 
         $expected = <<<'EOTXT'
-array:3 [
-  "array" => array:2 [
-    0 => "a",
-    1 => "b",
-  ],
-  "string" => "hello",
-  "multiline string" => """
-    this\n
-    is\n
-    a\multiline\n
-    string
-    """,
-]
+            array:3 [
+              "array" => array:2 [
+                0 => "a",
+                1 => "b",
+              ],
+              "string" => "hello",
+              "multiline string" => """
+                this\n
+                is\n
+                a\multiline\n
+                string
+                """,
+            ]
 
-EOTXT;
+            EOTXT;
 
         yield [$expected, CliDumper::DUMP_TRAILING_COMMA];
     }
@@ -220,13 +220,13 @@ EOTXT;
 
         $this->assertDumpMatchesFormat(
             <<<'EOTXT'
-array:4 [
-  0 => {}
-  1 => &1 null
-  2 => &1 null
-  "" => 2
-]
-EOTXT
+                array:4 [
+                  0 => {}
+                  1 => &1 null
+                  2 => &1 null
+                  "" => 2
+                ]
+                EOTXT
             ,
             $var
         );
@@ -239,10 +239,10 @@ EOTXT
 
         $this->assertDumpMatchesFormat(
             <<<'EOTXT'
-{
-  +"1": 2
-}
-EOTXT
+                {
+                  +"1": 2
+                }
+                EOTXT
             ,
             $var
         );
@@ -265,9 +265,9 @@ EOTXT
 
         $this->assertStringMatchesFormat(
             <<<EOTXT
-Closed resource @{$res}
+                Closed resource @{$res}
 
-EOTXT
+                EOTXT
             ,
             $out
         );
@@ -285,18 +285,18 @@ EOTXT
 
         $this->assertDumpEquals(
             <<<EOTXT
-[
-  [
-    1
-    2
-    3
-  ]
-  [
-    0 => (3) "foo"
-    2 => (3) "bar"
-  ]
-]
-EOTXT
+                [
+                  [
+                    1
+                    2
+                    3
+                  ]
+                  [
+                    0 => (3) "foo"
+                    2 => (3) "bar"
+                  ]
+                ]
+                EOTXT
             ,
             $var
         );
@@ -352,30 +352,30 @@ EOTXT
 
         $this->assertStringMatchesFormat(
             <<<EOTXT
-stream resource {@{$ref}
-  ⚠: Symfony\Component\VarDumper\Exception\ThrowingCasterException {#%d
-    #message: "Unexpected Exception thrown from a caster: Foobar"
-    trace: {
-      %sTwig.php:2 {
-        __TwigTemplate_VarDumperFixture_u75a09->doDisplay(array \$context, array \$blocks = []): array
-        › foo bar
-        ›   twig source
-        › 
-      }
-      %A%eTemplate.php:%d { …}
-      %s%eTests%eDumper%eCliDumperTest.php:%d { …}
-%A  }
-  }
-%Awrapper_type: "PHP"
-  stream_type: "MEMORY"
-  mode: "%s+b"
-  unread_bytes: 0
-  seekable: true
-  uri: "php://memory"
-%Aoptions: []
-}
+                stream resource {@{$ref}
+                  ⚠: Symfony\Component\VarDumper\Exception\ThrowingCasterException {#%d
+                    #message: "Unexpected Exception thrown from a caster: Foobar"
+                    trace: {
+                      %sTwig.php:2 {
+                        __TwigTemplate_VarDumperFixture_u75a09->doDisplay(array \$context, array \$blocks = []): array
+                        › foo bar
+                        ›   twig source
+                        › 
+                      }
+                      %A%eTemplate.php:%d { …}
+                      %s%eTests%eDumper%eCliDumperTest.php:%d { …}
+                %A  }
+                  }
+                %Awrapper_type: "PHP"
+                  stream_type: "MEMORY"
+                  mode: "%s+b"
+                  unread_bytes: 0
+                  seekable: true
+                  uri: "php://memory"
+                %Aoptions: []
+                }
 
-EOTXT
+                EOTXT
             ,
             $out
         );
@@ -395,12 +395,12 @@ EOTXT
 
         $this->assertStringMatchesFormat(
             <<<EOTXT
-{#%d
-  +"foo": &1 "foo"
-  +"bar": &1 "foo"
-}
+                {#%d
+                  +"foo": &1 "foo"
+                  +"bar": &1 "foo"
+                }
 
-EOTXT
+                EOTXT
             ,
             $out
         );
@@ -414,8 +414,8 @@ EOTXT
 
         $this->assertDumpMatchesFormat(
             <<<EOTXT
-__PHP_Incomplete_Class(Foo\Buzz) {}
-EOTXT
+                __PHP_Incomplete_Class(Foo\Buzz) {}
+                EOTXT
             ,
             $var
         );
@@ -427,11 +427,11 @@ EOTXT
             ['foo' => 'bar'],
             0,
             <<<EOTXT
-\e[0;38;5;208m\e[38;5;38marray:1\e[0;38;5;208m [\e[m
-  \e[0;38;5;208m"\e[38;5;113mfoo\e[0;38;5;208m" => "\e[1;38;5;113mbar\e[0;38;5;208m"\e[m
-\e[0;38;5;208m]\e[m
+                \e[0;38;5;208m\e[38;5;38marray:1\e[0;38;5;208m [\e[m
+                  \e[0;38;5;208m"\e[38;5;113mfoo\e[0;38;5;208m" => "\e[1;38;5;113mbar\e[0;38;5;208m"\e[m
+                \e[0;38;5;208m]\e[m
 
-EOTXT,
+                EOTXT,
         ];
 
         yield [[], AbstractDumper::DUMP_LIGHT_ARRAY, "\e[0;38;5;208m[]\e[m\n"];
@@ -440,11 +440,11 @@ EOTXT,
             ['foo' => 'bar'],
             AbstractDumper::DUMP_LIGHT_ARRAY,
             <<<EOTXT
-\e[0;38;5;208m[\e[m
-  \e[0;38;5;208m"\e[38;5;113mfoo\e[0;38;5;208m" => "\e[1;38;5;113mbar\e[0;38;5;208m"\e[m
-\e[0;38;5;208m]\e[m
+                \e[0;38;5;208m[\e[m
+                  \e[0;38;5;208m"\e[38;5;113mfoo\e[0;38;5;208m" => "\e[1;38;5;113mbar\e[0;38;5;208m"\e[m
+                \e[0;38;5;208m]\e[m
 
-EOTXT,
+                EOTXT,
         ];
 
         yield [[], 0, "\e[0;38;5;208m[]\e[m\n"];
@@ -499,14 +499,14 @@ EOTXT,
 
         $this->assertSame(
             <<<'EOTXT'
-{
-  foo: 123
-  +"bar": array:1 [
-    "bar" => 123
-  ]
-}
+                {
+                  foo: 123
+                  +"bar": array:1 [
+                    "bar" => 123
+                  ]
+                }
 
-EOTXT
+                EOTXT
             ,
             $dump
         );

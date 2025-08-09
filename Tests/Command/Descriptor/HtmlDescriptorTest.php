@@ -73,24 +73,24 @@ class HtmlDescriptorTest extends TestCase
                 ],
             ],
             <<<TXT
-<article data-dedup-id="%s">
-    <header>
-        <div class="row">
-            <h2 class="col">-</h2>
-            <time class="col text-small" title="2018-12-14T16:17:48+00:00" datetime="2018-12-14T16:17:48+00:00">
-                Fri, 14 Dec 2018 16:17:48 +0000
-            </time>
-        </div>
-        
-    </header>
-    <section class="body">
-        <p class="text-small">
-            CliDescriptorTest.php on line 30
-        </p>
-        [DUMPED]
-    </section>
-</article>
-TXT,
+                <article data-dedup-id="%s">
+                    <header>
+                        <div class="row">
+                            <h2 class="col">-</h2>
+                            <time class="col text-small" title="2018-12-14T16:17:48+00:00" datetime="2018-12-14T16:17:48+00:00">
+                                Fri, 14 Dec 2018 16:17:48 +0000
+                            </time>
+                        </div>
+                        
+                    </header>
+                    <section class="body">
+                        <p class="text-small">
+                            CliDescriptorTest.php on line 30
+                        </p>
+                        [DUMPED]
+                    </section>
+                </article>
+                TXT,
         ];
 
         yield 'source full' => [
@@ -105,28 +105,28 @@ TXT,
                 ],
             ],
             <<<TXT
-<article data-dedup-id="%s">
-    <header>
-        <div class="row">
-            <h2 class="col">-</h2>
-            <time class="col text-small" title="2018-12-14T16:17:48+00:00" datetime="2018-12-14T16:17:48+00:00">
-                Fri, 14 Dec 2018 16:17:48 +0000
-            </time>
-        </div>
-        <div class="row">
-    <ul class="tags">
-        <li><span class="badge">project dir</span>src/Symfony/</li>
-    </ul>
-</div>
-    </header>
-    <section class="body">
-        <p class="text-small">
-            <a href="phpstorm://open?file=/Users/ogi/symfony/src/Symfony/Component/VarDumper/Tests/Command/Descriptor/CliDescriptorTest.php&line=30">CliDescriptorTest.php on line 30</a>
-        </p>
-        [DUMPED]
-    </section>
-</article>
-TXT,
+                <article data-dedup-id="%s">
+                    <header>
+                        <div class="row">
+                            <h2 class="col">-</h2>
+                            <time class="col text-small" title="2018-12-14T16:17:48+00:00" datetime="2018-12-14T16:17:48+00:00">
+                                Fri, 14 Dec 2018 16:17:48 +0000
+                            </time>
+                        </div>
+                        <div class="row">
+                    <ul class="tags">
+                        <li><span class="badge">project dir</span>src/Symfony/</li>
+                    </ul>
+                </div>
+                    </header>
+                    <section class="body">
+                        <p class="text-small">
+                            <a href="phpstorm://open?file=/Users/ogi/symfony/src/Symfony/Component/VarDumper/Tests/Command/Descriptor/CliDescriptorTest.php&line=30">CliDescriptorTest.php on line 30</a>
+                        </p>
+                        [DUMPED]
+                    </section>
+                </article>
+                TXT,
         ];
 
         yield 'cli' => [
@@ -137,24 +137,24 @@ TXT,
                 ],
             ],
             <<<TXT
-<article data-dedup-id="d8bece1c">
-    <header>
-        <div class="row">
-            <h2 class="col"><code>$ </code>bin/phpunit</h2>
-            <time class="col text-small" title="2018-12-14T16:17:48+00:00" datetime="2018-12-14T16:17:48+00:00">
-                Fri, 14 Dec 2018 16:17:48 +0000
-            </time>
-        </div>
-        
-    </header>
-    <section class="body">
-        <p class="text-small">
-            
-        </p>
-        [DUMPED]
-    </section>
-</article>
-TXT,
+                <article data-dedup-id="d8bece1c">
+                    <header>
+                        <div class="row">
+                            <h2 class="col"><code>$ </code>bin/phpunit</h2>
+                            <time class="col text-small" title="2018-12-14T16:17:48+00:00" datetime="2018-12-14T16:17:48+00:00">
+                                Fri, 14 Dec 2018 16:17:48 +0000
+                            </time>
+                        </div>
+                        
+                    </header>
+                    <section class="body">
+                        <p class="text-small">
+                            
+                        </p>
+                        [DUMPED]
+                    </section>
+                </article>
+                TXT,
         ];
 
         yield 'request' => [
@@ -167,28 +167,28 @@ TXT,
                 ],
             ],
             <<<TXT
-<article data-dedup-id="d8bece1c">
-    <header>
-        <div class="row">
-            <h2 class="col"><code>GET</code> <a href="http://localhost/foo">http://localhost/foo</a></h2>
-            <time class="col text-small" title="2018-12-14T16:17:48+00:00" datetime="2018-12-14T16:17:48+00:00">
-                Fri, 14 Dec 2018 16:17:48 +0000
-            </time>
-        </div>
-        <div class="row">
-    <ul class="tags">
-        <li><span class="badge">controller</span><span class='dumped-tag'>[DUMPED]</span></li>
-    </ul>
-</div>
-    </header>
-    <section class="body">
-        <p class="text-small">
-            
-        </p>
-        [DUMPED]
-    </section>
-</article>
-TXT,
+                <article data-dedup-id="d8bece1c">
+                    <header>
+                        <div class="row">
+                            <h2 class="col"><code>GET</code> <a href="http://localhost/foo">http://localhost/foo</a></h2>
+                            <time class="col text-small" title="2018-12-14T16:17:48+00:00" datetime="2018-12-14T16:17:48+00:00">
+                                Fri, 14 Dec 2018 16:17:48 +0000
+                            </time>
+                        </div>
+                        <div class="row">
+                    <ul class="tags">
+                        <li><span class="badge">controller</span><span class='dumped-tag'>[DUMPED]</span></li>
+                    </ul>
+                </div>
+                    </header>
+                    <section class="body">
+                        <p class="text-small">
+                            
+                        </p>
+                        [DUMPED]
+                    </section>
+                </article>
+                TXT,
         ];
     }
 }
