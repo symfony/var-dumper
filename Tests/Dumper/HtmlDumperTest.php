@@ -113,8 +113,7 @@ class HtmlDumperTest extends TestCase
                 </samp>]
                 </bar>
 
-                EOTXT
-            ,
+                EOTXT,
 
             $out
         );
@@ -139,7 +138,9 @@ class HtmlDumperTest extends TestCase
               -<span class=sf-dump-virtual><span class=sf-dump-private title="Private property defined in class:&#10;`Symfony\Component\VarDumper\Tests\Fixtures\VirtualProperty`">noType</span></span>: <span class=sf-dump-virtual><span class=sf-dump-const title="Virtual property">~</span></span>
             </samp>}
             </bar>
-            EODUMP, $out);
+            EODUMP,
+            $out
+        );
     }
 
     public function testCharset()
@@ -159,8 +160,7 @@ class HtmlDumperTest extends TestCase
                 <foo></foo><bar>b"<span class=sf-dump-str title="7 binary or non-UTF-8 characters">&#1057;&#1083;&#1086;&#1074;&#1072;&#1088;&#1100;</span>"
                 </bar>
 
-                EOTXT
-            ,
+                EOTXT,
             $out
         );
     }
@@ -185,8 +185,7 @@ class HtmlDumperTest extends TestCase
             <bar><span class=sf-dump-num>456</span>
             </bar>
 
-            EOTXT
-            ,
+            EOTXT,
             $out
         );
     }

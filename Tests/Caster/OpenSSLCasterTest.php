@@ -45,7 +45,9 @@ class OpenSSLCasterTest extends TestCase
                     """
                   type: 0
                 }
-                EODUMP, $key);
+                EODUMP,
+            $key
+        );
     }
 
     public function testOpensslCsr()
@@ -77,6 +79,8 @@ class OpenSSLCasterTest extends TestCase
                   commonName: "symfony.com"
                   emailAddress: "test@symfony.com"
                 }
-                EODUMP, $csr);
+                EODUMP,
+            $csr
+        );
     }
 }
