@@ -25,7 +25,7 @@ class GmpCasterTest extends TestCase
     public function testCastGmp()
     {
         $gmpString = gmp_init('1234');
-        $gmpOctal = gmp_init(010);
+        $gmpOctal = gmp_init(0o10);
         $gmp = gmp_init('01101');
         $gmpDump = <<<EODUMP
 array:1 [
