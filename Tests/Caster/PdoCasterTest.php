@@ -43,24 +43,24 @@ class PdoCasterTest extends TestCase
         $this->assertSame('BOTH', $attr['DEFAULT_FETCH_MODE']->class);
 
         $xDump = <<<'EODUMP'
-array:2 [
-  "\x00~\x00inTransaction" => false
-  "\x00~\x00attributes" => array:10 [
-    "CASE" => NATURAL
-    "ERRMODE" => EXCEPTION
-    "PERSISTENT" => false
-    "DRIVER_NAME" => "sqlite"
-    "ORACLE_NULLS" => NATURAL
-    "CLIENT_VERSION" => "%s"
-    "SERVER_VERSION" => "%s"
-    "STATEMENT_CLASS" => array:%d [
-      0 => "PDOStatement"%A
-    ]
-    "STRINGIFY_FETCHES" => false
-    "DEFAULT_FETCH_MODE" => BOTH
-  ]
-]
-EODUMP;
+            array:2 [
+              "\x00~\x00inTransaction" => false
+              "\x00~\x00attributes" => array:10 [
+                "CASE" => NATURAL
+                "ERRMODE" => EXCEPTION
+                "PERSISTENT" => false
+                "DRIVER_NAME" => "sqlite"
+                "ORACLE_NULLS" => NATURAL
+                "CLIENT_VERSION" => "%s"
+                "SERVER_VERSION" => "%s"
+                "STATEMENT_CLASS" => array:%d [
+                  0 => "PDOStatement"%A
+                ]
+                "STRINGIFY_FETCHES" => false
+                "DEFAULT_FETCH_MODE" => BOTH
+              ]
+            ]
+            EODUMP;
 
         $this->assertDumpMatchesFormat($xDump, $cast);
     }

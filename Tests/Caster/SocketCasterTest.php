@@ -27,12 +27,12 @@ class SocketCasterTest extends TestCase
 
         $this->assertDumpMatchesFormat(
             <<<'EODUMP'
-Socket {
-  uri: "udp://127.0.0.1:%d"
-  timed_out: false
-  blocked: true%A
-}
-EODUMP, $socket);
+                Socket {
+                  uri: "udp://127.0.0.1:%d"
+                  timed_out: false
+                  blocked: true%A
+                }
+                EODUMP, $socket);
     }
 
     public function testCastSocketIpV6()
@@ -42,13 +42,13 @@ EODUMP, $socket);
 
         $this->assertDumpMatchesFormat(
             <<<'EODUMP'
-Socket {
-  uri: "tcp://[%A]:%d"
-  timed_out: false
-  blocked: true
-  last_error: SOCKET_ECONNREFUSED
-}
-EODUMP, $socket);
+                Socket {
+                  uri: "tcp://[%A]:%d"
+                  timed_out: false
+                  blocked: true
+                  last_error: SOCKET_ECONNREFUSED
+                }
+                EODUMP, $socket);
     }
 
     public function testCastUnixSocket()
@@ -58,12 +58,12 @@ EODUMP, $socket);
 
         $this->assertDumpMatchesFormat(
             <<<'EODUMP'
-Socket {
-  uri: "unix://"
-  timed_out: false
-  blocked: true
-  last_error: SOCKET_ENOENT
-}
-EODUMP, $socket);
+                Socket {
+                  uri: "unix://"
+                  timed_out: false
+                  blocked: true
+                  last_error: SOCKET_ENOENT
+                }
+                EODUMP, $socket);
     }
 }

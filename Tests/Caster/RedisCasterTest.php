@@ -32,10 +32,10 @@ class RedisCasterTest extends TestCase
         $redis = new \Redis();
 
         $xCast = <<<'EODUMP'
-Redis {
-  isConnected: false
-}
-EODUMP;
+            Redis {
+              isConnected: false
+            }
+            EODUMP;
 
         $this->assertDumpMatchesFormat($xCast, $redis);
     }
@@ -57,26 +57,26 @@ EODUMP;
         }
 
         $xCast = <<<EODUMP
-%a {%A
-  isConnected: true
-  host: "{$redisHost[0]}"
-  port: {$redisHost[1]}
-  auth: null
-  mode: ATOMIC
-  dbNum: 0
-  timeout: 0.0
-  lastError: null
-  persistentId: %a
-  options: {
-    TCP_KEEPALIVE: %a
-    READ_TIMEOUT: 0.0
-    COMPRESSION: NONE
-    SERIALIZER: NONE
-    PREFIX: null
-    SCAN: NORETRY
-  }
-}
-EODUMP;
+            %a {%A
+              isConnected: true
+              host: "{$redisHost[0]}"
+              port: {$redisHost[1]}
+              auth: null
+              mode: ATOMIC
+              dbNum: 0
+              timeout: 0.0
+              lastError: null
+              persistentId: %a
+              options: {
+                TCP_KEEPALIVE: %a
+                READ_TIMEOUT: 0.0
+                COMPRESSION: NONE
+                SERIALIZER: NONE
+                PREFIX: null
+                SCAN: NORETRY
+              }
+            }
+            EODUMP;
 
         $this->assertDumpMatchesFormat($xCast, $redis);
     }

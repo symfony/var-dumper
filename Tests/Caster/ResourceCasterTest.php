@@ -26,9 +26,9 @@ class ResourceCasterTest extends TestCase
 
         $this->assertDumpMatchesFormat(
             <<<'EODUMP'
-Dba\Connection {
-  +file: %s
-}
-EODUMP, $dba);
+                Dba\Connection {
+                  +file: %s
+                }
+                EODUMP, $dba);
     }
 }
