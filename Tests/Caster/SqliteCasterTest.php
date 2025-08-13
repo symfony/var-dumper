@@ -36,6 +36,8 @@ class SqliteCasterTest extends TestCase
                     1 => "bar"
                   ]
                 }
-                EODUMP, $result);
+                EODUMP,
+            $result
+        );
     }
 }

@@ -67,8 +67,9 @@ class VarDumperTestTraitTest extends TestCase
                 +date: "09/07/2019"
               }
             ]
-            DUMP
-            , [1, 2, new \DateTimeImmutable('2019-07-09T0:00:00+00:00')]);
+            DUMP,
+            [1, 2, new \DateTimeImmutable('2019-07-09T0:00:00+00:00')]
+        );
 
         $this->tearDownVarDumper();
 

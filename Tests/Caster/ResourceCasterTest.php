@@ -61,7 +61,9 @@ class ResourceCasterTest extends TestCase
                 dba resource {
                   file: %s
                 }
-                EODUMP, $dba);
+                EODUMP,
+            $dba
+        );
     }
 
     #[RequiresPhp('8.4.2')]
@@ -75,7 +77,9 @@ class ResourceCasterTest extends TestCase
                 Dba\Connection {
                   +file: %s
                 }
-                EODUMP, $dba);
+                EODUMP,
+            $dba
+        );
     }
 
     #[RequiresPhp('8.4')]
@@ -92,6 +96,8 @@ class ResourceCasterTest extends TestCase
             <<<'EODUMP'
                 Dba\Connection {
                 }
-                EODUMP, $dba);
+                EODUMP,
+            $dba
+        );
     }
 }
