@@ -147,7 +147,7 @@ class SplCasterTest extends TestCase
     public function testCastObjectStorageIsntModified()
     {
         $var = new \SplObjectStorage();
-        $var->attach(new \stdClass());
+        $var[new \stdClass()] = null;
         $var->rewind();
         $current = $var->current();
 
@@ -158,7 +158,7 @@ class SplCasterTest extends TestCase
     public function testCastObjectStorageDumpsInfo()
     {
         $var = new \SplObjectStorage();
-        $var->attach(new \stdClass(), new \DateTimeImmutable());
+        $var[new \stdClass()] = new \DateTimeImmutable();
 
         $this->assertDumpMatchesFormat('%ADateTimeImmutable%A', $var);
     }
