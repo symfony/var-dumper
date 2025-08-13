@@ -32,7 +32,9 @@ class SocketCasterTest extends TestCase
                   timed_out: false
                   blocked: true%A
                 }
-                EODUMP, $socket);
+                EODUMP,
+            $socket
+        );
     }
 
     public function testCastSocketIpV6()
@@ -48,7 +50,9 @@ class SocketCasterTest extends TestCase
                   blocked: true
                   last_error: SOCKET_ECONNREFUSED
                 }
-                EODUMP, $socket);
+                EODUMP,
+            $socket
+        );
     }
 
     public function testCastUnixSocket()
@@ -64,6 +68,8 @@ class SocketCasterTest extends TestCase
                   blocked: true
                   last_error: SOCKET_ENOENT
                 }
-                EODUMP, $socket);
+                EODUMP,
+            $socket
+        );
     }
 }

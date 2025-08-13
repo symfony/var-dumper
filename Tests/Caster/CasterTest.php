@@ -159,8 +159,8 @@ class CasterTest extends TestCase
                 stdClass@anonymous {
                   -foo: "foo"
                 }
-                EOTXT
-            , $c
+                EOTXT,
+            $c
         );
 
         $c = eval('return new class implements \Countable { private $foo = "foo"; public function count(): int { return 0; } };');
@@ -170,8 +170,8 @@ class CasterTest extends TestCase
                 Countable@anonymous {
                   -foo: "foo"
                 }
-                EOTXT
-            , $c
+                EOTXT,
+            $c
         );
     }
 
@@ -196,7 +196,9 @@ class CasterTest extends TestCase
               #e: "e"
               -f: "f"
             }
-            DUMP, new B());
+            DUMP,
+            new B()
+        );
     }
 }
 

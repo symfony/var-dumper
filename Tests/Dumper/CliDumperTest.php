@@ -112,8 +112,7 @@ class CliDumperTest extends TestCase
                   b"bin-key-é" => ""
                 ]
 
-                EOTXT
-            ,
+                EOTXT,
             $out
         );
     }
@@ -163,8 +162,9 @@ class CliDumperTest extends TestCase
               }
             }
 
-            EOTXT
-            , $dump);
+            EOTXT,
+            $dump
+        );
     }
 
     public static function provideDumpWithCommaFlagTests()
@@ -224,8 +224,7 @@ class CliDumperTest extends TestCase
                   2 => &1 null
                   "" => 2
                 ]
-                EOTXT
-            ,
+                EOTXT,
             $var
         );
     }
@@ -240,8 +239,7 @@ class CliDumperTest extends TestCase
                 {
                   +"1": 2
                 }
-                EOTXT
-            ,
+                EOTXT,
             $var
         );
     }
@@ -265,8 +263,7 @@ class CliDumperTest extends TestCase
             <<<EOTXT
                 Closed resource @{$res}
 
-                EOTXT
-            ,
+                EOTXT,
             $out
         );
     }
@@ -294,8 +291,7 @@ class CliDumperTest extends TestCase
                     2 => (3) "bar"
                   ]
                 ]
-                EOTXT
-            ,
+                EOTXT,
             $var
         );
 
@@ -312,7 +308,9 @@ class CliDumperTest extends TestCase
               +fullName: ~ string
               -noType: ~
             }
-            EODUMP, new VirtualProperty());
+            EODUMP,
+            new VirtualProperty()
+        );
     }
 
     public function testThrowingCaster()
@@ -372,8 +370,7 @@ class CliDumperTest extends TestCase
                 %Aoptions: []
                 }
 
-                EOTXT
-            ,
+                EOTXT,
             $out
         );
     }
@@ -397,8 +394,7 @@ class CliDumperTest extends TestCase
                   +"bar": &1 "foo"
                 }
 
-                EOTXT
-            ,
+                EOTXT,
             $out
         );
     }
@@ -412,8 +408,7 @@ class CliDumperTest extends TestCase
         $this->assertDumpMatchesFormat(
             <<<EOTXT
                 __PHP_Incomplete_Class(Foo\Buzz) {}
-                EOTXT
-            ,
+                EOTXT,
             $var
         );
     }
@@ -503,8 +498,7 @@ class CliDumperTest extends TestCase
                   ]
                 }
 
-                EOTXT
-            ,
+                EOTXT,
             $dump
         );
     }

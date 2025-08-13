@@ -34,6 +34,8 @@ class CurlCasterTest extends TestCase
                   http_code: %d
                 %A
                 }
-                EODUMP, $ch);
+                EODUMP,
+            $ch
+        );
     }
 }
