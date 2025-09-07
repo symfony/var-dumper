@@ -119,7 +119,7 @@ class HtmlDumperTest extends TestCase
         );
     }
 
-    #[RequiresPhp('8.4')]
+    #[RequiresPhp('>=8.4')]
     public function testVirtualProperties()
     {
         $dumper = new HtmlDumper('php://output');

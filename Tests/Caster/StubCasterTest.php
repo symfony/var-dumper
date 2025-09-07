@@ -104,7 +104,7 @@ class StubCasterTest extends TestCase
         $this->assertDumpMatchesFormat($expectedDump, $args);
     }
 
-    #[RequiresPhp('8.4')]
+    #[RequiresPhp('>=8.4')]
     public function testVirtualPropertyStub()
     {
         $class = new \ReflectionClass(VirtualProperty::class);
@@ -119,7 +119,7 @@ class StubCasterTest extends TestCase
         $this->assertDumpMatchesFormat($expectedDump, $args);
     }
 
-    #[RequiresPhp('8.4')]
+    #[RequiresPhp('>=8.4')]
     public function testVirtualPropertyWithoutTypeStub()
     {
         $class = new \ReflectionClass(VirtualProperty::class);

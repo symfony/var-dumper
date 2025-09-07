@@ -301,7 +301,7 @@ class CliDumperTest extends TestCase
         putenv('DUMP_STRING_LENGTH=');
     }
 
-    #[RequiresPhp('8.4')]
+    #[RequiresPhp('>=8.4')]
     public function testVirtualProperties()
     {
         $this->assertDumpEquals(<<<EODUMP

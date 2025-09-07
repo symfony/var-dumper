@@ -66,7 +66,7 @@ class ResourceCasterTest extends TestCase
         );
     }
 
-    #[RequiresPhp('8.4.2')]
+    #[RequiresPhp('>=8.4.2')]
     #[RequiresPhpExtension('dba')]
     public function testCastDba()
     {
@@ -82,7 +82,7 @@ class ResourceCasterTest extends TestCase
         );
     }
 
-    #[RequiresPhp('8.4')]
+    #[RequiresPhp('>=8.4')]
     #[RequiresPhpExtension('dba')]
     public function testCastDbaOnBuggyPhp84()
     {

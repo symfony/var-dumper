@@ -531,7 +531,7 @@ class ReflectionCasterTest extends TestCase
         $this->assertDumpMatchesFormat($expectedDump, $generator);
     }
 
-    #[RequiresPhp('8.4')]
+    #[RequiresPhp('>=8.4')]
     public function testGenerator()
     {
         if (\extension_loaded('xdebug')) {

@@ -55,7 +55,7 @@ class XmlReaderCasterTest extends TestCase
         $this->assertDumpMatchesFormat($expectedDump, $this->reader);
     }
 
-    #[RequiresPhp('8.4')]
+    #[RequiresPhp('>=8.4')]
     public function testParserProperty()
     {
         $this->reader->setParserProperty(\XMLReader::SUBST_ENTITIES, true);
@@ -286,7 +286,7 @@ class XmlReaderCasterTest extends TestCase
         $this->assertDumpMatchesFormat($expectedDump, $this->reader);
     }
 
-    #[RequiresPhp('8.4')]
+    #[RequiresPhp('>=8.4')]
     public function testWithUninitializedXMLReader()
     {
         $this->reader = new \XMLReader();
