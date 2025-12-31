@@ -29,7 +29,7 @@ class DoctrineCasterTest extends TestCase
     {
         $classMetadata = new ClassMetadata(__CLASS__);
 
-        $collection = new PersistentCollection($this->createMock(EntityManagerInterface::class), $classMetadata, new ArrayCollection(['test']));
+        $collection = new PersistentCollection($this->createStub(EntityManagerInterface::class), $classMetadata, new ArrayCollection(['test']));
 
         if (property_exists(PersistentCollection::class, 'isDirty')) {
             // Collections >= 2
