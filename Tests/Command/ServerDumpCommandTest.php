@@ -38,6 +38,6 @@ class ServerDumpCommandTest extends TestCase
 
     private function createCommand(): ServerDumpCommand
     {
-        return new ServerDumpCommand($this->createMock(DumpServer::class));
+        return new ServerDumpCommand($this->createStub(DumpServer::class));
     }
 }
