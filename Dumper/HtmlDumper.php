@@ -907,9 +907,7 @@ class HtmlDumper extends CliDumper
         );
 
         if (!($attr['binary'] ?? false)) {
-            $v = preg_replace_callback(static::$unicodeCharsRx, static function ($c) {
-                return '<span class=sf-dump-default>\u{'.strtoupper(dechex(mb_ord($c[0]))).'}</span>';
-            }, $v);
+            $v = preg_replace_callback(static::$unicodeCharsRx, static fn ($c) => '<span class=sf-dump-default>\u{'.strtoupper(dechex(mb_ord($c[0]))).'}</span>', $v);
         }
 
         if (isset($attr['file']) && $href = $this->getSourceLink($attr['file'], $attr['line'] ?? 0)) {
