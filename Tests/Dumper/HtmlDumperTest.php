@@ -208,4 +208,92 @@ class HtmlDumperTest extends TestCase
             ['foo', '<span class=sf-dump-str title="3 characters">foo</span>'],
         ];
     }
+
+    public function testNonce()
+    {
+        $dumper = new HtmlDumper('php://output');
+        $dumper->setNonce('test-nonce-123');
+        $cloner = new VarCloner();
+
+        ob_start();
+        $dumper->dump($cloner->cloneVar('foo'));
+        $out = ob_get_clean();
+
+        $this->assertStringContainsString('<script nonce="test-nonce-123">', $out);
+        $this->assertStringContainsString('<style nonce="test-nonce-123">', $out);
+        $this->assertStringNotContainsString('<script>', $out);
+        $this->assertStringNotContainsString('<style>', $out);
+    }
+
+    public function testNonceIsEscaped()
+    {
+        $dumper = new HtmlDumper('php://output');
+        $dumper->setNonce('test"><script>alert(1)</script><x a="');
+        $cloner = new VarCloner();
+
+        ob_start();
+        $dumper->dump($cloner->cloneVar('foo'));
+        $out = ob_get_clean();
+
+        // The nonce should be HTML-escaped to prevent XSS
+        $this->assertStringContainsString('nonce="test&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;&lt;x a=&quot;"', $out);
+        // The unescaped dangerous string should not appear
+        $this->assertStringNotContainsString('nonce="test"><script>', $out);
+    }
+
+    public function testNonceCanBeAClosureResolvedPerDump()
+    {
+        $dumper = new HtmlDumper('php://output');
+        $cloner = new VarCloner();
+        $current = 'first';
+        $dumper->setNonce(function () use (&$current): string { return $current; });
+
+        ob_start();
+        $dumper->dump($cloner->cloneVar('foo'));
+        $first = ob_get_clean();
+
+        $current = 'second';
+
+        ob_start();
+        $dumper->dump($cloner->cloneVar('bar'));
+        $second = ob_get_clean();
+
+        $this->assertStringContainsString('nonce="first"', $first);
+        $this->assertStringNotContainsString('nonce="second"', $first);
+
+        $this->assertStringContainsString('nonce="second"', $second);
+        $this->assertStringNotContainsString('nonce="first"', $second);
+    }
+
+    public function testNonceClosureMayReturnNullToSkipInjection()
+    {
+        $dumper = new HtmlDumper('php://output');
+        $dumper->setNonce(static fn (): ?string => null);
+        $cloner = new VarCloner();
+
+        ob_start();
+        $dumper->dump($cloner->cloneVar('foo'));
+        $out = ob_get_clean();
+
+        $this->assertStringContainsString('<script>', $out);
+        $this->assertStringContainsString('<style>', $out);
+        $this->assertStringNotContainsString('nonce=', $out);
+    }
+
+    public function testNonceClosureMustReturnStringOrNull()
+    {
+        $dumper = new HtmlDumper('php://output');
+        $dumper->setNonce(static fn (): int => 42);
+        $cloner = new VarCloner();
+
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('must return a string or null, "int" returned');
+
+        ob_start();
+        try {
+            $dumper->dump($cloner->cloneVar('foo'));
+        } finally {
+            ob_end_clean();
+        }
+    }
 }
