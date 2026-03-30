@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+8.1
+---
+
+ * Dump class-strings as class stubs with source location and static properties
+
 7.4
 ---
 
