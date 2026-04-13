@@ -133,7 +133,7 @@ class ReflectionCasterTest extends TestCase
     {
         $var = static function &($a = 5) {};
 
-        $this->assertDumpEquals('Closure&($a = 5) { …5}', $var, Caster::EXCLUDE_VERBOSE);
+        $this->assertDumpEquals('Closure&($a = 5) { …4}', $var, Caster::EXCLUDE_VERBOSE);
     }
 
     public function testReflectionParameter()
@@ -377,7 +377,6 @@ class ReflectionCasterTest extends TestCase
                 Closure(): int {
                   returnType: "int"
                   class: "Symfony\Component\VarDumper\Tests\Caster\ReflectionCasterTest"
-                  this: Symfony\Component\VarDumper\Tests\Caster\ReflectionCasterTest { …}
                   file: "%s"
                   line: "%s"
                 }
@@ -395,7 +394,6 @@ class ReflectionCasterTest extends TestCase
                 Closure(): mixed {
                   returnType: "mixed"
                   class: "Symfony\Component\VarDumper\Tests\Caster\ReflectionCasterTest"
-                  this: Symfony\Component\VarDumper\Tests\Caster\ReflectionCasterTest { …}
                   file: "%s"
                   line: "%s"
                 }
@@ -430,7 +428,6 @@ class ReflectionCasterTest extends TestCase
                 Closure(): int|float {
                   returnType: "int|float"
                   class: "Symfony\Component\VarDumper\Tests\Caster\ReflectionCasterTest"
-                  this: Symfony\Component\VarDumper\Tests\Caster\ReflectionCasterTest { …}
                   file: "%s"
                   line: "%s"
                 }
@@ -448,7 +445,6 @@ class ReflectionCasterTest extends TestCase
                 Closure(): int|float|null {
                   returnType: "int|float|null"
                   class: "Symfony\Component\VarDumper\Tests\Caster\ReflectionCasterTest"
-                  this: Symfony\Component\VarDumper\Tests\Caster\ReflectionCasterTest { …}
                   file: "%s"
                   line: "%s"
                 }
@@ -543,7 +539,6 @@ class ReflectionCasterTest extends TestCase
             <<<EOTXT
                 Closure(\$a = new stdClass) {
                   class: "Symfony\Component\VarDumper\Tests\Caster\ReflectionCasterTest"
-                  this: Symfony\Component\VarDumper\Tests\Caster\ReflectionCasterTest { …}
                   file: "%s"
                   line: "%s"
                 }
