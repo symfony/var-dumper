@@ -65,8 +65,9 @@ class ConnectionTest extends TestCase
             ]
             %d
 
-            DUMP
-            , $dumped);
+            DUMP,
+            $dumped
+        );
     }
 
     public function testNoServer()

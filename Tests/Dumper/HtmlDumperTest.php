@@ -110,8 +110,7 @@ class HtmlDumperTest extends TestCase
                 </samp>]
                 </bar>
 
-                EOTXT
-            ,
+                EOTXT,
 
             $out
         );
@@ -134,8 +133,7 @@ class HtmlDumperTest extends TestCase
                 <foo></foo><bar>b"<span class=sf-dump-str title="7 binary or non-UTF-8 characters">&#1057;&#1083;&#1086;&#1074;&#1072;&#1088;&#1100;</span>"
                 </bar>
 
-                EOTXT
-            ,
+                EOTXT,
             $out
         );
     }
@@ -160,8 +158,7 @@ class HtmlDumperTest extends TestCase
             <bar><span class=sf-dump-num>456</span>
             </bar>
 
-            EOTXT
-            ,
+            EOTXT,
             $out
         );
     }

@@ -78,8 +78,8 @@ class ReflectionCasterTest extends TestCase
                 %A         position: 0
                 %A
                 }
-                EOTXT
-            , $var
+                EOTXT,
+            $var
         );
     }
 
@@ -98,8 +98,8 @@ class ReflectionCasterTest extends TestCase
                   file: "%sReflectionCasterTest.php"
                   line: "%s"
                 }
-                EOTXT
-            , $var
+                EOTXT,
+            $var
         );
     }
 
@@ -124,8 +124,8 @@ class ReflectionCasterTest extends TestCase
                     line: "%d to %d"
                   }
                 ]
-                EOTXT
-            , $var
+                EOTXT,
+            $var
         );
     }
 
@@ -148,8 +148,8 @@ class ReflectionCasterTest extends TestCase
                   allowsNull: true
                   typeHint: "Symfony\Component\VarDumper\Tests\Fixtures\NotLoadableClass"
                 }
-                EOTXT
-            , $var
+                EOTXT,
+            $var
         );
     }
 
@@ -165,8 +165,8 @@ class ReflectionCasterTest extends TestCase
                   position: 0
                   typeHint: "int"
                 }
-                EOTXT
-            , $var
+                EOTXT,
+            $var
         );
     }
 
@@ -183,8 +183,8 @@ class ReflectionCasterTest extends TestCase
                   allowsNull: true
                   typeHint: "mixed"
                 }
-                EOTXT
-            , $var
+                EOTXT,
+            $var
         );
     }
 
@@ -200,8 +200,8 @@ class ReflectionCasterTest extends TestCase
                   position: 0
                   typeHint: "int|float"
                 }
-                EOTXT
-            , $var
+                EOTXT,
+            $var
         );
     }
 
@@ -218,8 +218,8 @@ class ReflectionCasterTest extends TestCase
                   allowsNull: true
                   typeHint: "int|float|null"
                 }
-                EOTXT
-            , $var
+                EOTXT,
+            $var
         );
     }
 
@@ -235,8 +235,8 @@ class ReflectionCasterTest extends TestCase
                   position: 0
                   typeHint: "Traversable&Countable"
                 }
-                EOTXT
-            , $var
+                EOTXT,
+            $var
         );
     }
 
@@ -250,8 +250,8 @@ class ReflectionCasterTest extends TestCase
                   +class: "Symfony\Component\VarDumper\Tests\Fixtures\ReflectionNamedTypeFixture"
                   modifiers: "public"
                 }
-                EOTXT
-            , $var
+                EOTXT,
+            $var
         );
     }
 
@@ -265,8 +265,8 @@ class ReflectionCasterTest extends TestCase
                   allowsNull: false
                   isBuiltin: true
                 }
-                EOTXT
-            , $var
+                EOTXT,
+            $var
         );
     }
 
@@ -290,8 +290,8 @@ class ReflectionCasterTest extends TestCase
                     }
                   ]
                 }
-                EOTXT
-            , $var
+                EOTXT,
+            $var
         );
     }
 
@@ -315,8 +315,8 @@ class ReflectionCasterTest extends TestCase
                     }
                   ]
                 }
-                EOTXT
-            , $var
+                EOTXT,
+            $var
         );
     }
 
@@ -353,8 +353,8 @@ class ReflectionCasterTest extends TestCase
                     }
                   ]
                 }
-                EOTXT
-            , $var
+                EOTXT,
+            $var
         );
     }
 
@@ -366,8 +366,8 @@ class ReflectionCasterTest extends TestCase
                 Symfony\Component\VarDumper\Tests\Fixtures\ExtendsReflectionTypeFixture {
                   allowsNull: false
                 }
-                EOTXT
-            , $var
+                EOTXT,
+            $var
         );
     }
 
@@ -384,8 +384,8 @@ class ReflectionCasterTest extends TestCase
                   file: "%s"
                   line: "%s"
                 }
-                EOTXT
-            , $f
+                EOTXT,
+            $f
         );
     }
 
@@ -402,8 +402,8 @@ class ReflectionCasterTest extends TestCase
                   file: "%s"
                   line: "%s"
                 }
-                EOTXT
-            , $f
+                EOTXT,
+            $f
         );
     }
 
@@ -422,8 +422,8 @@ class ReflectionCasterTest extends TestCase
                   file: "%s"
                   line: "%s"
                 }
-                EOTXT
-            , (new Php82NullStandaloneReturnType())->foo(...)
+                EOTXT,
+            (new Php82NullStandaloneReturnType())->foo(...)
         );
     }
 
@@ -440,8 +440,8 @@ class ReflectionCasterTest extends TestCase
                   file: "%s"
                   line: "%s"
                 }
-                EOTXT
-            , $f
+                EOTXT,
+            $f
         );
     }
 
@@ -458,8 +458,8 @@ class ReflectionCasterTest extends TestCase
                   file: "%s"
                   line: "%s"
                 }
-                EOTXT
-            , $f
+                EOTXT,
+            $f
         );
     }
 
@@ -631,8 +631,8 @@ class ReflectionCasterTest extends TestCase
                   file: "%s"
                   line: "%s"
                 }
-                EOTXT
-            , $f
+                EOTXT,
+            $f
         );
     }
 
@@ -652,8 +652,9 @@ class ReflectionCasterTest extends TestCase
               ]
             %A
             }
-            EOTXT
-            , $var);
+            EOTXT,
+            $var
+        );
     }
 
     public function testReflectionMethodWithAttribute()
@@ -675,8 +676,9 @@ class ReflectionCasterTest extends TestCase
               ]
             %A
             }
-            EOTXT
-            , $var);
+            EOTXT,
+            $var
+        );
     }
 
     public function testReflectionPropertyWithAttribute()
@@ -698,8 +700,9 @@ class ReflectionCasterTest extends TestCase
                 }
               ]
             }
-            EOTXT
-            , $var);
+            EOTXT,
+            $var
+        );
     }
 
     public function testReflectionClassConstantWithAttribute()
@@ -728,8 +731,9 @@ class ReflectionCasterTest extends TestCase
                 }
               ]
             }
-            EOTXT
-            , $var);
+            EOTXT,
+            $var
+        );
     }
 
     public function testReflectionParameterWithAttribute()
@@ -751,8 +755,9 @@ class ReflectionCasterTest extends TestCase
               ]
             %A
             }
-            EOTXT
-            , $var);
+            EOTXT,
+            $var
+        );
     }
 
     public static function stub(): void

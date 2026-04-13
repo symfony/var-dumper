@@ -82,8 +82,9 @@ class ServerDumperTest extends TestCase
               ]
             ]
             %d
-            DUMP
-            , $dumped);
+            DUMP,
+            $dumped
+        );
     }
 
     private function getServerProcess(): Process
