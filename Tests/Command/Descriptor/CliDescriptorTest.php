@@ -70,7 +70,7 @@ class CliDescriptorTest extends TestCase
                   source   CliDescriptorTest.php on line 30                                                                   
                   file     /Users/ogi/symfony/src/Symfony/Component/VarDumper/Tests/Command/Descriptor/CliDescriptorTest.php  
                  -------- ---------------------------------------------------------------------------------------------------
-                TXT
+                TXT,
         ];
 
         yield 'source full' => [
@@ -93,7 +93,7 @@ class CliDescriptorTest extends TestCase
                   file     src/Symfony/Component/VarDumper/Tests/Command/Descriptor/CliDescriptorTest.php  
                  -------- -------------------------------------------------------------------------------- 
 
-                TXT
+                TXT,
         ];
 
         yield 'source with hyperlink' => [
@@ -126,7 +126,7 @@ class CliDescriptorTest extends TestCase
                  ------ --------------------------------- 
                   date   Fri, 14 Dec 2018 16:17:48 +0000  
                  ------ ---------------------------------
-                TXT
+                TXT,
         ];
 
         yield 'request' => [
@@ -146,7 +146,7 @@ class CliDescriptorTest extends TestCase
                   date         Fri, 14 Dec 2018 16:17:48 +0000  
                   controller   "FooController.php"              
                  ------------ --------------------------------- 
-                TXT
+                TXT,
         ];
     }
 }
