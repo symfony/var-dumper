@@ -651,7 +651,7 @@ class ReflectionCasterTest extends TestCase
     public function testReflectionParameterWithAttribute()
     {
         $var = new \ReflectionParameter([LotsOfAttributes::class, 'someMethod'], 'someParameter');
-  
+
         $this->assertDumpMatchesFormat(<<<EOTXT
             ReflectionParameter {
               +name: "someParameter"
