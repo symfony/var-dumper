@@ -906,7 +906,7 @@ class HtmlDumper extends CliDumper
             1 === \count($dumpClasses) ? '' : '"',
             implode(' ', $dumpClasses),
             $dumpTitle ? ' title="'.$dumpTitle.'"' : '',
-            preg_replace_callback(static::$controlCharsRx, function ($c) use ($map) {
+            preg_replace_callback(static::$controlCharsRx, static function ($c) use ($map) {
                 $s = $b = '<span class="sf-dump-default';
                 $c = $c[$i = 0];
                 if ($ns = "\r" === $c[$i] || "\n" === $c[$i]) {
@@ -930,7 +930,7 @@ class HtmlDumper extends CliDumper
         );
 
         if (!($attr['binary'] ?? false)) {
-            $v = preg_replace_callback(static::$unicodeCharsRx, function ($c) {
+            $v = preg_replace_callback(static::$unicodeCharsRx, static function ($c) {
                 return '<span class=sf-dump-default>\u{'.strtoupper(dechex(mb_ord($c[0]))).'}</span>';
             }, $v);
         }

@@ -399,8 +399,8 @@ class VarClonerTest extends TestCase
     public function testCaster()
     {
         $cloner = new VarCloner([
-            '*' => fn ($obj, $array) => ['foo' => 123],
-            __CLASS__ => function ($obj, $array) {
+            '*' => static fn ($obj, $array) => ['foo' => 123],
+            __CLASS__ => static function ($obj, $array) {
                 ++$array['foo'];
 
                 return $array;
