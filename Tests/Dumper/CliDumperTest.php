@@ -42,12 +42,12 @@ class CliDumperTest extends TestCase
         $dumper->setColors(false);
         $cloner = new VarCloner();
         $cloner->addCasters([
-            ':stream' => function ($res, $a) {
+            ':stream' => static function ($res, $a) {
                 unset($a['uri'], $a['wrapper_data']);
 
                 return $a;
             },
-            'Symfony\Component\VarDumper\Tests\Fixture\DumbFoo' => function ($foo, $a) {
+            'Symfony\Component\VarDumper\Tests\Fixture\DumbFoo' => static function ($foo, $a) {
                 $a['foo'] = new CutStub($a['foo']);
 
                 return $a;
@@ -327,7 +327,7 @@ class CliDumperTest extends TestCase
         $dumper->setColors(false);
         $cloner = new VarCloner();
         $cloner->addCasters([
-            ':stream' => function ($res, $a) {
+            ':stream' => static function ($res, $a) {
                 unset($a['wrapper_data']);
 
                 return $a;
@@ -453,7 +453,7 @@ class CliDumperTest extends TestCase
         }
 
         $out = '';
-        $dumper = new CliDumper(function ($line, $depth) use (&$out) {
+        $dumper = new CliDumper(static function ($line, $depth) use (&$out) {
             if ($depth >= 0) {
                 $out .= str_repeat('  ', $depth).$line."\n";
             }
