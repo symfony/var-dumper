@@ -55,7 +55,7 @@ if (!function_exists('dd')) {
             exit(1);
         }
 
-        if (\array_key_exists(0, $vars) && 1 === \count($vars)) {
+        if (array_key_exists(0, $vars) && 1 === count($vars)) {
             VarDumper::dump($vars[0]);
         } else {
             foreach ($vars as $k => $v) {
