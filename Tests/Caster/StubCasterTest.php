@@ -30,12 +30,12 @@ class StubCasterTest extends TestCase
         $args = [new ArgsStub([123], __FUNCTION__, __CLASS__)];
 
         $expectedDump = <<<'EODUMP'
-array:1 [
-  0 => {
-    $foo: 123
-  }
-]
-EODUMP;
+            array:1 [
+              0 => {
+                $foo: 123
+              }
+            ]
+            EODUMP;
 
         $this->assertDumpMatchesFormat($expectedDump, $args);
     }
@@ -45,15 +45,15 @@ EODUMP;
         $args = [new ArgsStub([123, 456], __FUNCTION__, __CLASS__)];
 
         $expectedDump = <<<'EODUMP'
-array:1 [
-  0 => {
-    $foo: 123
-    ...: {
-      456
-    }
-  }
-]
-EODUMP;
+            array:1 [
+              0 => {
+                $foo: 123
+                ...: {
+                  456
+                }
+              }
+            ]
+            EODUMP;
 
         $this->assertDumpMatchesFormat($expectedDump, $args);
     }
@@ -63,12 +63,12 @@ EODUMP;
         $args = [new ArgsStub([123], __FUNCTION__, __CLASS__)];
 
         $expectedDump = <<<'EODUMP'
-array:1 [
-  0 => {
-    123
-  }
-]
-EODUMP;
+            array:1 [
+              0 => {
+                123
+              }
+            ]
+            EODUMP;
 
         $this->assertDumpMatchesFormat($expectedDump, $args);
     }
@@ -78,12 +78,12 @@ EODUMP;
         $args = [new ArgsStub([123], '{closure}', null)];
 
         $expectedDump = <<<'EODUMP'
-array:1 [
-  0 => {
-    123
-  }
-]
-EODUMP;
+            array:1 [
+              0 => {
+                123
+              }
+            ]
+            EODUMP;
 
         $this->assertDumpMatchesFormat($expectedDump, $args);
     }
@@ -93,10 +93,10 @@ EODUMP;
         $args = [new ScalarStub('🐛')];
 
         $expectedDump = <<<'EODUMP'
-array:1 [
-  0 => 🐛
-]
-EODUMP;
+            array:1 [
+              0 => 🐛
+            ]
+            EODUMP;
 
         $this->assertDumpMatchesFormat($expectedDump, $args);
     }
@@ -113,11 +113,11 @@ EODUMP;
         $dump = $dumper->dump($cloner->cloneVar($var), true);
 
         $expectedDump = <<<'EODUMP'
-<foo></foo><bar><span class=sf-dump-note>array:1</span> [<samp data-depth=1 class=sf-dump-expanded>
-  <span class=sf-dump-index>0</span> => "<a href="%sStubCasterTest.php:0" rel="noopener noreferrer"><span class=sf-dump-str title="55 characters">Symfony\Component\VarDumper\Tests\Caster\StubCasterTest</span></a>"
-</samp>]
-</bar>
-EODUMP;
+            <foo></foo><bar><span class=sf-dump-note>array:1</span> [<samp data-depth=1 class=sf-dump-expanded>
+              <span class=sf-dump-index>0</span> => "<a href="%sStubCasterTest.php:0" rel="noopener noreferrer"><span class=sf-dump-str title="55 characters">Symfony\Component\VarDumper\Tests\Caster\StubCasterTest</span></a>"
+            </samp>]
+            </bar>
+            EODUMP;
 
         $this->assertStringMatchesFormat($expectedDump, $dump);
     }
@@ -134,11 +134,11 @@ EODUMP;
         $dump = $dumper->dump($cloner->cloneVar($var), true);
 
         $expectedDump = <<<'EODUMP'
-<foo></foo><bar><span class=sf-dump-note>array:1</span> [<samp data-depth=1 class=sf-dump-expanded>
-  <span class=sf-dump-index>0</span> => "<a href="http://example.com" target="_blank" rel="noopener noreferrer"><span class=sf-dump-str title="11 characters">example.com</span></a>"
-</samp>]
-</bar>
-EODUMP;
+            <foo></foo><bar><span class=sf-dump-note>array:1</span> [<samp data-depth=1 class=sf-dump-expanded>
+              <span class=sf-dump-index>0</span> => "<a href="http://example.com" target="_blank" rel="noopener noreferrer"><span class=sf-dump-str title="11 characters">example.com</span></a>"
+            </samp>]
+            </bar>
+            EODUMP;
 
         $this->assertStringMatchesFormat($expectedDump, $dump);
     }
@@ -154,11 +154,11 @@ EODUMP;
         $dump = $dumper->dump($cloner->cloneVar($var), true, ['fileLinkFormat' => '%f:%l']);
 
         $expectedDump = <<<'EODUMP'
-<foo></foo><bar><span class=sf-dump-note>array:1</span> [<samp data-depth=1 class=sf-dump-expanded>
-  <span class=sf-dump-index>0</span> => "<a href="%sFooInterface.php:10" rel="noopener noreferrer"><span class=sf-dump-str title="40 characters">hello(?stdClass $a, ?stdClass $b = null)</span></a>"
-</samp>]
-</bar>
-EODUMP;
+            <foo></foo><bar><span class=sf-dump-note>array:1</span> [<samp data-depth=1 class=sf-dump-expanded>
+              <span class=sf-dump-index>0</span> => "<a href="%sFooInterface.php:10" rel="noopener noreferrer"><span class=sf-dump-str title="40 characters">hello(?stdClass $a, ?stdClass $b = null)</span></a>"
+            </samp>]
+            </bar>
+            EODUMP;
 
         $this->assertStringMatchesFormat($expectedDump, $dump);
     }
@@ -174,12 +174,12 @@ EODUMP;
         $dump = $dumper->dump($cloner->cloneVar($var), true);
 
         $expectedDump = <<<'EODUMP'
-<foo></foo><bar><span class=sf-dump-note>array:1</span> [<samp data-depth=1 class=sf-dump-expanded>
-  <span class=sf-dump-index>0</span> => "<span class="sf-dump-str sf-dump-ellipsization" title="Symfony\Component\VarDumper\Tests\Caster\NotExisting
-52 characters"><span class="sf-dump-ellipsis sf-dump-ellipsis-class">Symfony\Component\VarDumper\Tests\Caster</span><span class="sf-dump-ellipsis sf-dump-ellipsis-class">\</span><span class="sf-dump-ellipsis-tail">NotExisting</span></span>"
-</samp>]
-</bar>
-EODUMP;
+            <foo></foo><bar><span class=sf-dump-note>array:1</span> [<samp data-depth=1 class=sf-dump-expanded>
+              <span class=sf-dump-index>0</span> => "<span class="sf-dump-str sf-dump-ellipsization" title="Symfony\Component\VarDumper\Tests\Caster\NotExisting
+            52 characters"><span class="sf-dump-ellipsis sf-dump-ellipsis-class">Symfony\Component\VarDumper\Tests\Caster</span><span class="sf-dump-ellipsis sf-dump-ellipsis-class">\</span><span class="sf-dump-ellipsis-tail">NotExisting</span></span>"
+            </samp>]
+            </bar>
+            EODUMP;
 
         $this->assertStringMatchesFormat($expectedDump, $dump);
     }
@@ -195,11 +195,11 @@ EODUMP;
         $dump = $dumper->dump($cloner->cloneVar($var), true, ['fileLinkFormat' => '%f:%l']);
 
         $expectedDump = <<<'EODUMP'
-<foo></foo><bar><span class=sf-dump-note>array:1</span> [<samp data-depth=1 class=sf-dump-expanded>
-  <span class=sf-dump-index>0</span> => "<a href="%sFooInterface.php:5" rel="noopener noreferrer"><span class=sf-dump-str title="5 characters">hello</span></a>"
-</samp>]
-</bar>
-EODUMP;
+            <foo></foo><bar><span class=sf-dump-note>array:1</span> [<samp data-depth=1 class=sf-dump-expanded>
+              <span class=sf-dump-index>0</span> => "<a href="%sFooInterface.php:5" rel="noopener noreferrer"><span class=sf-dump-str title="5 characters">hello</span></a>"
+            </samp>]
+            </bar>
+            EODUMP;
 
         $this->assertStringMatchesFormat($expectedDump, $dump);
     }
@@ -216,11 +216,11 @@ EODUMP;
         $dump = $dumper->dump($cloner->cloneVar($var), true, ['fileLinkFormat' => '%f:%l']);
 
         $expectedDump = <<<'EODUMP'
-<foo></foo><bar><span class=sf-dump-note>array:1</span> [<samp data-depth=1 class=sf-dump-expanded>
-  <span class=sf-dump-index>0</span> => "<a href="%sStubCasterTest.php:209" rel="noopener noreferrer"><span class=sf-dump-str title="19 characters">Exception@anonymous</span></a>"
-</samp>]
-</bar>
-EODUMP;
+            <foo></foo><bar><span class=sf-dump-note>array:1</span> [<samp data-depth=1 class=sf-dump-expanded>
+              <span class=sf-dump-index>0</span> => "<a href="%sStubCasterTest.php:209" rel="noopener noreferrer"><span class=sf-dump-str title="19 characters">Exception@anonymous</span></a>"
+            </samp>]
+            </bar>
+            EODUMP;
 
         $this->assertStringMatchesFormat($expectedDump, $dump);
     }

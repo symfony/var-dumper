@@ -62,15 +62,15 @@ class CliDescriptorTest extends TestCase
                 ],
             ],
             <<<TXT
-Received from client #1
------------------------
+                Received from client #1
+                -----------------------
 
- -------- --------------------------------------------------------------------------------------------------- 
-  date     Fri, 14 Dec 2018 16:17:48 +0000                                                                    
-  source   CliDescriptorTest.php on line 30                                                                   
-  file     /Users/ogi/symfony/src/Symfony/Component/VarDumper/Tests/Command/Descriptor/CliDescriptorTest.php  
- -------- ---------------------------------------------------------------------------------------------------
-TXT
+                 -------- --------------------------------------------------------------------------------------------------- 
+                  date     Fri, 14 Dec 2018 16:17:48 +0000                                                                    
+                  source   CliDescriptorTest.php on line 30                                                                   
+                  file     /Users/ogi/symfony/src/Symfony/Component/VarDumper/Tests/Command/Descriptor/CliDescriptorTest.php  
+                 -------- ---------------------------------------------------------------------------------------------------
+                TXT
         ];
 
         yield 'source full' => [
@@ -84,16 +84,16 @@ TXT
                 ],
             ],
             <<<TXT
-Received from client #1
------------------------
+                Received from client #1
+                -----------------------
 
- -------- -------------------------------------------------------------------------------- 
-  date     Fri, 14 Dec 2018 16:17:48 +0000                                                 
-  source   CliDescriptorTest.php on line 30                                                
-  file     src/Symfony/Component/VarDumper/Tests/Command/Descriptor/CliDescriptorTest.php  
- -------- -------------------------------------------------------------------------------- 
+                 -------- -------------------------------------------------------------------------------- 
+                  date     Fri, 14 Dec 2018 16:17:48 +0000                                                 
+                  source   CliDescriptorTest.php on line 30                                                
+                  file     src/Symfony/Component/VarDumper/Tests/Command/Descriptor/CliDescriptorTest.php  
+                 -------- -------------------------------------------------------------------------------- 
 
-TXT
+                TXT
         ];
 
         yield 'source with hyperlink' => [
@@ -106,11 +106,10 @@ TXT
                 ],
             ],
             <<<TXT
-%A
-  source   \033]8;;phpstorm://open?file=/Users/ogi/symfony/src/Symfony/Component/VarDumper/Tests/Command/Descriptor/CliDescriptorTest.php&line=30\033\CliDescriptorTest.php on line 30\033]8;;\033%A
-%A
-TXT
-            , true,
+                %A
+                  source   \033]8;;phpstorm://open?file=/Users/ogi/symfony/src/Symfony/Component/VarDumper/Tests/Command/Descriptor/CliDescriptorTest.php&line=30\033\CliDescriptorTest.php on line 30\033]8;;\033%A
+                %A
+                TXT, true,
         ];
 
         yield 'cli' => [
@@ -121,13 +120,13 @@ TXT
                 ],
             ],
             <<<TXT
-$ bin/phpunit
--------------
+                $ bin/phpunit
+                -------------
 
- ------ --------------------------------- 
-  date   Fri, 14 Dec 2018 16:17:48 +0000  
- ------ ---------------------------------
-TXT
+                 ------ --------------------------------- 
+                  date   Fri, 14 Dec 2018 16:17:48 +0000  
+                 ------ ---------------------------------
+                TXT
         ];
 
         yield 'request' => [
@@ -140,14 +139,14 @@ TXT
                 ],
             ],
             <<<TXT
-GET http://localhost/foo
-------------------------
+                GET http://localhost/foo
+                ------------------------
 
- ------------ --------------------------------- 
-  date         Fri, 14 Dec 2018 16:17:48 +0000  
-  controller   "FooController.php"              
- ------------ --------------------------------- 
-TXT
+                 ------------ --------------------------------- 
+                  date         Fri, 14 Dec 2018 16:17:48 +0000  
+                  controller   "FooController.php"              
+                 ------------ --------------------------------- 
+                TXT
         ];
     }
 }

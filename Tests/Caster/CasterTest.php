@@ -157,10 +157,10 @@ class CasterTest extends TestCase
 
         $this->assertDumpMatchesFormat(
             <<<'EOTXT'
-stdClass@anonymous {
-  -foo: "foo"
-}
-EOTXT
+                stdClass@anonymous {
+                  -foo: "foo"
+                }
+                EOTXT
             , $c
         );
 
@@ -168,10 +168,10 @@ EOTXT
 
         $this->assertDumpMatchesFormat(
             <<<'EOTXT'
-Countable@anonymous {
-  -foo: "foo"
-}
-EOTXT
+                Countable@anonymous {
+                  -foo: "foo"
+                }
+                EOTXT
             , $c
         );
     }
