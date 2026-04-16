@@ -454,7 +454,7 @@ class ReflectionCasterTest extends TestCase
         );
     }
 
-    #[RequiresPhp('<8.4')]
+    #[RequiresPhp('<8.4.0')]
     public function testGeneratorPriorTo84()
     {
         if (\extension_loaded('xdebug')) {
@@ -527,7 +527,7 @@ class ReflectionCasterTest extends TestCase
         $this->assertDumpMatchesFormat($expectedDump, $generator);
     }
 
-    #[RequiresPhp('>=8.4')]
+    #[RequiresPhp('>=8.4.0')]
     public function testGenerator()
     {
         if (\extension_loaded('xdebug')) {

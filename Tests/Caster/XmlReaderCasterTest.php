@@ -36,7 +36,7 @@ class XmlReaderCasterTest extends TestCase
         $this->reader->close();
     }
 
-    #[RequiresPhp('<8.4')]
+    #[RequiresPhp('<8.4.0')]
     public function testParserPropertyPriorToPhp84()
     {
         $this->reader->setParserProperty(\XMLReader::SUBST_ENTITIES, true);
@@ -55,7 +55,7 @@ class XmlReaderCasterTest extends TestCase
         $this->assertDumpMatchesFormat($expectedDump, $this->reader);
     }
 
-    #[RequiresPhp('>=8.4')]
+    #[RequiresPhp('>=8.4.0')]
     public function testParserProperty()
     {
         $this->reader->setParserProperty(\XMLReader::SUBST_ENTITIES, true);
@@ -80,7 +80,7 @@ class XmlReaderCasterTest extends TestCase
      * and their values are not dumped.
      */
     #[DataProvider('provideNodes')]
-    #[RequiresPhp('<8.4')]
+    #[RequiresPhp('<8.4.0')]
     public function testNodes($seek, $expectedDump)
     {
         while ($seek--) {
@@ -271,7 +271,7 @@ class XmlReaderCasterTest extends TestCase
         ];
     }
 
-    #[RequiresPhp('<8.4')]
+    #[RequiresPhp('<8.4.0')]
     public function testWithUninitializedXMLReaderPriorToPhp84()
     {
         $this->reader = new \XMLReader();
@@ -286,7 +286,7 @@ class XmlReaderCasterTest extends TestCase
         $this->assertDumpMatchesFormat($expectedDump, $this->reader);
     }
 
-    #[RequiresPhp('>=8.4')]
+    #[RequiresPhp('>=8.4.0')]
     public function testWithUninitializedXMLReader()
     {
         $this->reader = new \XMLReader();

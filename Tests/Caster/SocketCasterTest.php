@@ -21,7 +21,7 @@ class SocketCasterTest extends TestCase
 {
     use VarDumperTestTrait;
 
-    #[RequiresPhp('>=8.3')]
+    #[RequiresPhp('>=8.3.0')]
     public function testCastSocket()
     {
         $socket = socket_create(\AF_INET, \SOCK_DGRAM, \SOL_UDP);
@@ -39,7 +39,7 @@ class SocketCasterTest extends TestCase
         );
     }
 
-    #[RequiresPhp('<8.3')]
+    #[RequiresPhp('<8.3.0')]
     public function testCastSocketPriorToPhp83()
     {
         $socket = socket_create(\AF_INET, \SOCK_DGRAM, \SOL_UDP);
@@ -56,7 +56,7 @@ class SocketCasterTest extends TestCase
         );
     }
 
-    #[RequiresPhp('>=8.3')]
+    #[RequiresPhp('>=8.3.0')]
     public function testCastSocketIpV6()
     {
         $socket = socket_create(\AF_INET6, \SOCK_STREAM, \SOL_TCP);
@@ -75,7 +75,7 @@ class SocketCasterTest extends TestCase
         );
     }
 
-    #[RequiresPhp('<8.3')]
+    #[RequiresPhp('<8.3.0')]
     public function testCastSocketIpV6PriorToPhp83()
     {
         $socket = socket_create(\AF_INET6, \SOCK_STREAM, \SOL_TCP);
@@ -93,7 +93,7 @@ class SocketCasterTest extends TestCase
         );
     }
 
-    #[RequiresPhp('>=8.3')]
+    #[RequiresPhp('>=8.3.0')]
     public function testCastUnixSocket()
     {
         $socket = socket_create(\AF_UNIX, \SOCK_STREAM, 0);
@@ -112,7 +112,7 @@ class SocketCasterTest extends TestCase
         );
     }
 
-    #[RequiresPhp('<8.3')]
+    #[RequiresPhp('<8.3.0')]
     public function testCastUnixSocketPriorToPhp83()
     {
         $socket = socket_create(\AF_UNIX, \SOCK_STREAM, 0);
