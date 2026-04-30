@@ -12,6 +12,7 @@
 namespace Symfony\Component\VarDumper\Tests\Dumper;
 
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\TestWith;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\VarDumper\Caster\ClassDumpStub;
 use Symfony\Component\VarDumper\Caster\ClassStub;
@@ -313,6 +314,14 @@ class CliDumperTest extends TestCase
             EODUMP,
             new VirtualProperty()
         );
+    }
+
+    #[TestWith(['stdClass'])]
+    #[TestWith(['locale'])]
+    #[TestWith(['FFI\CType'])]
+    public function testBuiltInClassString($classString)
+    {
+        $this->assertDumpMatchesFormat('"'.$classString.'"', $classString);
     }
 
     public function testClassString()
