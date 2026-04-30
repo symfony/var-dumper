@@ -76,6 +76,7 @@ class HtmlDumper extends CliDumper
     ];
     private array $extraDisplayOptions = [];
     private string|\Closure|null $nonce = null;
+    private string|\Closure|null $styleNonce = null;
 
     public function __construct($output = null, ?string $charset = null, int $flags = 0)
     {
@@ -129,42 +130,55 @@ class HtmlDumper extends CliDumper
     }
 
     /**
-     * Sets a nonce to be added to <script> and <style> tags for CSP compliance.
+     * Sets nonces to be added to <script> and <style> tags for CSP compliance.
      *
      * Pass a string for a static nonce, or a {@see \Closure} returning a
      * string (or null) to resolve the nonce lazily — useful for per-request
      * nonces in long-running processes (the closure is invoked on every
      * dump, so it can return a fresh value each time).
+     *
+     * If $styleNonce is omitted, $nonce is reused for both <script> and
+     * <style> tags; pass a distinct value when your CSP uses different
+     * nonces for the script-src and style-src directives.
      */
-    public function setNonce(string|\Closure|null $nonce): void
+    public function setNonce(string|\Closure|null $nonce, string|\Closure|null $styleNonce = null): void
     {
         $this->headerIsDumped = false;
         $this->nonce = $nonce;
+        $this->styleNonce = $styleNonce;
     }
 
     private function applyNonce(string $html): string
     {
-        if ($this->nonce instanceof \Closure) {
-            $nonce = ($this->nonce)();
+        $scriptNonce = $this->resolveNonce($this->nonce);
+        $styleNonce = null !== $this->styleNonce ? $this->resolveNonce($this->styleNonce) : $scriptNonce;
 
-            if (null !== $nonce && !\is_string($nonce)) {
-                throw new \LogicException(\sprintf('The nonce closure passed to "%s::setNonce()" must return a string or null, "%s" returned.', self::class, get_debug_type($nonce)));
-            }
-        } else {
-            $nonce = $this->nonce;
+        $replacements = [];
+        if (null !== $scriptNonce) {
+            $replacements['<script>'] = '<script nonce="'.esc($scriptNonce).'">';
+        }
+        if (null !== $styleNonce) {
+            $replacements['<style>'] = '<style nonce="'.esc($styleNonce).'">';
         }
 
-        if (null === $nonce) {
+        if (!$replacements) {
             return $html;
         }
 
-        $escaped = esc($nonce);
+        return str_replace(array_keys($replacements), array_values($replacements), $html);
+    }
 
-        return str_replace(
-            ['<script>', '<style>'],
-            ['<script nonce="'.$escaped.'">', '<style nonce="'.$escaped.'">'],
-            $html,
-        );
+    private function resolveNonce(string|\Closure|null $nonce): ?string
+    {
+        if (!$nonce instanceof \Closure) {
+            return $nonce;
+        }
+
+        if (!\is_string($value = $nonce() ?? '')) {
+            throw new \LogicException(\sprintf('The nonce closure passed to "%s::setNonce()" must return a string or null, "%s" returned.', self::class, get_debug_type($value)));
+        }
+
+        return $value;
     }
 
     public function dump(Data $data, $output = null, array $extraDisplayOptions = []): ?string

@@ -246,7 +246,7 @@ class HtmlDumperTest extends TestCase
         $dumper = new HtmlDumper('php://output');
         $cloner = new VarCloner();
         $current = 'first';
-        $dumper->setNonce(function () use (&$current): string { return $current; });
+        $dumper->setNonce(static function () use (&$current): string { return $current; });
 
         ob_start();
         $dumper->dump($cloner->cloneVar('foo'));
@@ -295,5 +295,21 @@ class HtmlDumperTest extends TestCase
         } finally {
             ob_end_clean();
         }
+    }
+
+    public function testDistinctScriptAndStyleNonces()
+    {
+        $dumper = new HtmlDumper('php://output');
+        $dumper->setNonce('script-abc', 'style-xyz');
+        $cloner = new VarCloner();
+
+        ob_start();
+        $dumper->dump($cloner->cloneVar('foo'));
+        $out = ob_get_clean();
+
+        $this->assertStringContainsString('<script nonce="script-abc">', $out);
+        $this->assertStringContainsString('<style nonce="style-xyz">', $out);
+        $this->assertStringNotContainsString('<script nonce="style-xyz">', $out);
+        $this->assertStringNotContainsString('<style nonce="script-abc">', $out);
     }
 }
