@@ -174,7 +174,7 @@ class HtmlDumper extends CliDumper
             return $nonce;
         }
 
-        if (!\is_string($value = $nonce() ?? '')) {
+        if (!\is_string(($value = $nonce()) ?? '')) {
             throw new \LogicException(\sprintf('The nonce closure passed to "%s::setNonce()" must return a string or null, "%s" returned.', self::class, get_debug_type($value)));
         }
 
