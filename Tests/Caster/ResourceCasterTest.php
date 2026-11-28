@@ -52,7 +52,7 @@ class ResourceCasterTest extends TestCase
     #[RequiresPhpExtension('dba')]
     public function testCastDbaPriorToPhp84()
     {
-        $dba = dba_open(sys_get_temp_dir().'/test.db', 'c');
+        $dba = dba_open(sys_get_temp_dir().'/sf_var-dumper_'.hash('xxh32', __FILE__).'.db', 'c');
 
         $this->assertDumpMatchesFormat(
             <<<'EODUMP'
@@ -68,7 +68,7 @@ class ResourceCasterTest extends TestCase
     #[RequiresPhpExtension('dba')]
     public function testCastDba()
     {
-        $dba = dba_open(sys_get_temp_dir().'/test.db', 'c');
+        $dba = dba_open(sys_get_temp_dir().'/sf_var-dumper_'.hash('xxh32', __FILE__).'.db', 'c');
 
         $this->assertDumpMatchesFormat(
             <<<'EODUMP'
@@ -88,7 +88,7 @@ class ResourceCasterTest extends TestCase
             $this->markTestSkipped('The test can only be run on PHP 8.4.0 and 8.4.1, see https://github.com/php/php-src/issues/16990');
         }
 
-        $dba = dba_open(sys_get_temp_dir().'/test.db', 'c');
+        $dba = dba_open(sys_get_temp_dir().'/sf_var-dumper_'.hash('xxh32', __FILE__).'.db', 'c');
 
         $this->assertDumpMatchesFormat(
             <<<'EODUMP'
